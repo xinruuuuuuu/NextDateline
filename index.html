@@ -290,10 +290,8 @@
 
         .portal-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.85rem; margin-top: 0.5rem; }
         
-        /* FIXED: Modified target cursor styles for operational components */
         .portal-link-btn {
             display: flex; align-items: center; gap: 0.7rem; padding: 1rem; background: #f8fafc; border: 1px solid var(--border); border-radius: 14px; color: #334155; font-size: 0.88rem; font-weight: 700; text-decoration: none; transition: all 0.25s;
-            cursor: pointer;
         }
         .portal-link-btn:hover { border-color: var(--primary); background: #f5f3ff; color: var(--primary); transform: translateY(-3px); }
 
@@ -396,7 +394,7 @@
     <header class="landing-header" id="landing-nav">
         <img src="logo.png" alt="NextDeadline Logo" class="main-brand-logo">
         
-        <!-- Centered Title Banner -->
+        <!-- Centered Core Title Header Banner -->
         <div style="font-size: 1.6rem; font-weight: 900; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.02em;">
             NextDeadline
         </div>
@@ -631,33 +629,6 @@
             }
         }
 
-        // --- FOOLPROOF BLOB-BASED NAMED DOWNLOAD ENGINE ---
-        function executeSecureDownload(fileUrl, preferredFilename) {
-            fetch(fileUrl)
-                .then(response => {
-                    if (!response.ok) throw new Error("Network file response failure.");
-                    return response.blob();
-                })
-                .then(blob => {
-                    const blobUrl = window.URL.createObjectURL(blob);
-                    const dummyAnchor = document.createElement('a');
-                    dummyAnchor.style.display = 'none';
-                    dummyAnchor.href = blobUrl;
-                    dummyAnchor.download = preferredFilename;
-                    
-                    document.body.appendChild(dummyAnchor);
-                    dummyAnchor.click();
-                    
-                    // Cleanup memory allocations safely
-                    window.URL.revokeObjectURL(blobUrl);
-                    dummyAnchor.remove();
-                })
-                .catch(err => {
-                    console.error("Blob proxy download failed, falling back to window source redirect: ", err);
-                    window.open(fileUrl, '_blank');
-                });
-        }
-
         // DYNAMIC PORTAL GENERATION ENGINE
         function renderStudentPortals() {
             const isMobile = window.innerWidth <= 968;
@@ -668,13 +639,13 @@
                 ? "https://apps.apple.com/sg/app/snapp/id1152917731" 
                 : "https://play.google.com/store/apps/details?id=com.engage2serve.snapp2";
 
-            // Fixed layout templates targeting our custom Blob actions
+            // FIXED: Removed JavaScript download wrappers and download parameters to let files safely load inline via target="_blank"
             return `
                 <a href="https://politemall.polite.edu.sg" target="_blank" class="portal-link-btn"><span class="icon">🏫</span> Politemall LMS</a>
                 <a href="https://mysa.rp.edu.sg/" target="_blank" class="portal-link-btn"><span class="icon">📝</span> SA3.0 Portal</a>
                 <a href="${snappLink}" target="_blank" class="portal-link-btn"><span class="icon">📱</span> SNAPP App</a>
-                <div onclick="executeSecureDownload('campus-map.pdf', 'RP_Campus_Map.pdf')" class="portal-link-btn"><span class="icon">🗺️</span> Campus Map</div>
-                <div onclick="executeSecureDownload('academic-calendar.pdf', 'RP_Academic_Calendar_2026.pdf')" class="portal-link-btn" style="${isMobile ? '' : 'grid-column: span 2;'}"><span class="icon">📅</span> Academic Calendar 2026</div>
+                <a href="campus-map.pdf" target="_blank" class="portal-link-btn"><span class="icon">🗺️</span> Campus Map</a>
+                <a href="academic-calendar.pdf" target="_blank" class="portal-link-btn" style="${isMobile ? '' : 'grid-column: span 2;'}"><span class="icon">📅</span> Academic Calendar 2026</a>
             `;
         }
 
