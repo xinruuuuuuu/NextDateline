@@ -158,17 +158,61 @@
         .mode-text-box h3 { font-size: 1.45rem; font-weight: 800; margin-bottom: 0.35rem; color: var(--dark); }
         .mode-text-box p { color: var(--gray); font-size: 0.95rem; }
 
-        /* FIXED: Completely solid container without dynamic hover shifts or animations */
-        .auth-image-frame {
-            width: 100%; 
-            background: var(--glass); 
-            backdrop-filter: blur(16px); 
-            border-radius: 32px; 
-            border: 1px solid rgba(255, 255, 255, 0.5); 
-            padding: 2.5rem; 
-            box-shadow: 0 30px 60px -15px rgba(15, 23, 42, 0.06);
+        /* --- ADVANCED 3D FLIP ARCHITECTURE ENGINE --- */
+        .flip-stage {
+            width: 100%;
+            perspective: 1200px; /* Gives depth to the 3D rotation */
+            cursor: pointer;
         }
-        .auth-image-frame img { width: 100%; height: auto; display: block; }
+        
+        .flip-card-inner {
+            width: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 30px 60px -15px rgba(15, 23, 42, 0.06);
+            border-radius: 32px;
+        }
+        
+        /* JavaScript toggles this class on click handles */
+        .flip-card-inner.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .auth-image-frame, .auth-logo-backframe {
+            width: 100%;
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            border-radius: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 2.5rem;
+            backface-visibility: hidden; /* Hides the back side of a panel when turned around */
+            -webkit-backface-visibility: hidden;
+        }
+
+        .auth-image-frame img, .auth-logo-backframe img { 
+            width: 100%; 
+            height: auto; 
+            display: block; 
+            object-fit: contain; 
+        }
+
+        .auth-logo-backframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotateY(180deg); /* Preflipped so it displays upright on completion */
+            background: white;
+        }
+        
+        .auth-logo-backframe img {
+            max-width: 80%;
+            max-height: 80%;
+        }
 
         /* --- MAIN WORKSPACE SYSTEM AREA --- */
         #dashboard-screen { display: none; flex-direction: column; flex: 1; z-index: 1; }
@@ -227,39 +271,15 @@
         .portal-link-btn:hover { border-color: var(--primary); background: #f5f3ff; color: var(--primary); transform: translateY(-3px); }
 
         /* --- CAMPUS EXPLORER ENGINE INTERFACE --- */
-        .explorer-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
+        .explorer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-top: 1rem; }
         .explorer-chip {
-            padding: 0.65rem;
-            background: #f1f5f9;
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: #475569;
-            cursor: pointer;
-            text-align: center;
-            transition: all 0.2s;
+            padding: 0.65rem; background: #f1f5f9; border: 1px solid var(--border); border-radius: 10px; font-size: 0.8rem; font-weight: 700; color: #475569; cursor: pointer; text-align: center; transition: all 0.2s;
         }
         .explorer-chip:hover, .explorer-chip.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+            background: var(--primary); color: white; border-color: var(--primary); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
         }
         .route-display-card {
-            background: #f8fafc;
-            border-left: 4px solid var(--primary);
-            border-radius: 0 12px 12px 0;
-            padding: 1rem;
-            margin-top: 0.85rem;
-            display: none;
-            animation: fadeInCard 0.3s ease;
+            background: #f8fafc; border-left: 4px solid var(--primary); border-radius: 0 12px 12px 0; padding: 1rem; margin-top: 0.85rem; display: none; animation: fadeInCard 0.3s ease;
         }
         @keyframes fadeInCard { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
         .route-display-card h5 { font-size: 0.9rem; font-weight: 800; color: var(--dark); }
@@ -320,9 +340,22 @@
             </div>
         </div>
 
+        <!-- UPDATED: Interactive 3D Flip Component Stage -->
         <div class="portal-right">
-            <div class="auth-image-frame">
-                <img src="webimage.jpg" alt="Application Workspace Illustration">
+            <div class="flip-stage" onclick="toggleImageFlip()">
+                <div class="flip-card-inner" id="interactive-flip-card">
+                    
+                    <!-- Front Card Side (Illustration) -->
+                    <div class="auth-image-frame">
+                        <img src="webimage.jpg" alt="Application Workspace Illustration">
+                    </div>
+                    
+                    <!-- Back Card Side (Your Logo!) -->
+                    <div class="auth-logo-backframe">
+                        <img src="logo.png" alt="NextDeadline Core Brand Identity Logo Asset">
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
@@ -437,6 +470,14 @@
             if(orb2) orb2.style.transform = `translate(${-moveX}px, ${-moveY}px)`;
         });
 
+        // --- 3D CARD FLIP ACTION CALLBACK ---
+        function toggleImageFlip() {
+            const cardInner = document.getElementById('interactive-flip-card');
+            if (cardInner) {
+                cardInner.classList.toggle('flipped');
+            }
+        }
+
         function createCardRipple(event, trackType) {
             const card = event.currentTarget;
             const ripple = document.createElement('span');
@@ -457,7 +498,6 @@
             const title = document.getElementById('route-target-title');
             const desc = document.getElementById('route-target-desc');
 
-            // ACCURATE LANDMARK ROUTING MATRIX ENGINE
             const routeDatabase = {
                 trcc: {
                     title: "The Republic Cultural Centre (TRCC)",
@@ -540,6 +580,10 @@
             document.getElementById('dashboard-screen').style.display = 'none';
             document.getElementById('landing-nav').style.display = 'flex';
             document.getElementById('mode-screen').style.display = 'flex';
+            
+            // Unflip the home illustration card safely upon exit
+            const cardInner = document.getElementById('interactive-flip-card');
+            if(cardInner) cardInner.classList.remove('flipped');
         }
     </script>
 </body>
