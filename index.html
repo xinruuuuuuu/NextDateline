@@ -32,71 +32,203 @@
             display: flex; 
             flex-direction: column;
             line-height: 1.5;
+            position: relative;
+            overflow-x: hidden;
         }
 
-        /* --- Interactive Mode Selection Portal --- */
+        /* Decorative Abstract Background Elements */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, rgba(255,255,255,0) 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* --- Premium Landing Navigation Header --- */
+        .landing-header {
+            background: white;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            z-index: 10;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+
+        .tag-badge {
+            background: #e0e7ff;
+            color: var(--primary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* --- Professional Dual-Column Selection Portal Layout --- */
         #mode-screen {
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             flex: 1;
             padding: 4rem 2rem;
-            background-color: #f1f5f9;
+            max-width: 1280px;
+            margin: 0 auto;
+            width: 100%;
+            gap: 4rem;
+            z-index: 1;
         }
         
-        .mode-title { text-align: center; margin-bottom: 2.5rem; }
-        .mode-title h2 { font-size: 2.5rem; font-weight: 800; color: var(--dark); letter-spacing: -0.03em; margin-bottom: 0.5rem; }
-        .mode-grid { display: flex; gap: 2rem; max-width: 840px; width: 100%; }
+        .portal-left {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .portal-right {
+            flex: 0.8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mode-title { 
+            text-align: left; 
+            margin-bottom: 2.5rem; 
+        }
+        
+        .mode-title h2 { 
+            font-size: 3.25rem; 
+            font-weight: 900; 
+            color: var(--dark); 
+            letter-spacing: -0.04em; 
+            margin-bottom: 1rem; 
+            line-height: 1.1;
+        }
+
+        .mode-title h2 span {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .mode-title p {
+            color: var(--gray);
+            font-size: 1.15rem;
+            line-height: 1.6;
+            max-width: 600px;
+        }
+        
+        .mode-grid { 
+            display: flex; 
+            flex-direction: column;
+            gap: 1.25rem; 
+            width: 100%; 
+        }
         
         .mode-card {
-            flex: 1;
             background: white;
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
             border-radius: 24px;
-            padding: 3rem 2rem;
+            padding: 2rem;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            text-align: center;
+            display: flex;
+            align-items: center;
+            gap: 1.75rem;
+            text-align: left;
+            box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.02);
             position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
         }
-        
-        .mode-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: transparent; transition: background 0.2s;
+
+        .mode-card::after {
+            content: '➔';
+            position: absolute;
+            right: 2rem;
+            font-size: 1.25rem;
+            color: var(--gray);
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.25s ease;
         }
 
         .mode-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-            border-color: #cbd5e1;
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.12), 0 10px 10px -5px rgba(99, 102, 241, 0.04);
+            border-color: var(--primary);
+        }
+
+        .mode-card:hover::after {
+            opacity: 1;
+            transform: translateX(0);
+            color: var(--primary);
         }
         
-        .mode-card:hover::before { background: var(--accent-gradient); }
-        .mode-icon { font-size: 3rem; margin-bottom: 1.5rem; display: inline-block; }
-        .mode-card h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--dark); }
-        .mode-card p { color: var(--gray); font-size: 0.95rem; line-height: 1.5; }
+        .mode-icon { 
+            font-size: 2.5rem; 
+            background: #f1f5f9;
+            width: 76px;
+            height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            transition: all 0.25s ease;
+            flex-shrink: 0;
+            box-shadow: inset 0 -2px 0 rgba(0,0,0,0.05);
+        }
+
+        .mode-card:hover .mode-icon {
+            background: #e0e7ff;
+            transform: scale(1.05);
+        }
+
+        .mode-text-box {
+            padding-right: 2rem;
+        }
+
+        .mode-text-box h3 { 
+            font-size: 1.4rem; 
+            font-weight: 800; 
+            margin-bottom: 0.35rem; 
+            color: var(--dark); 
+            letter-spacing: -0.02em;
+        }
+        
+        .mode-text-box p { 
+            color: var(--gray); 
+            font-size: 0.95rem; 
+            line-height: 1.5; 
+        }
 
         .auth-image-frame {
             width: 100%;
-            max-width: 380px;
-            margin: 2rem auto 0 auto;
-            border-radius: 16px;
+            background: white;
+            border-radius: 32px;
             overflow: hidden;
             border: 1px solid var(--border);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.08);
+            padding: 2.5rem;
+            transition: transform 0.3s ease;
         }
 
         .auth-image-frame img {
             width: 100%;
             height: auto;
             display: block;
-            object-fit: cover;
+            object-fit: contain;
         }
 
-        /* --- Main App Layout --- */
-        #dashboard-screen { display: none; flex-direction: column; flex: 1; }
+        /* --- Main Inner App Dashboard Layout --- */
+        #dashboard-screen { display: none; flex-direction: column; flex: 1; z-index: 1; }
         
         header { 
             background-color: white; 
@@ -149,7 +281,6 @@
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
         }
 
-        /* --- Focused Header Banner Card --- */
         .workspace-banner-card {
             background: #f8fafc;
             border: 1px solid var(--border);
@@ -164,12 +295,9 @@
             font-size: 0.85rem; font-weight: 700; padding: 0.35rem 0.75rem; border-radius: 8px;
         }
         
-        /* --- General Widget Containers --- */
         .widget-box { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; }
         .widget-box h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
 
-        /* --- Premium Schedule Dropzone File Uploader Component --- */
-        #upload-box { display: block; }
         .upload-dropzone {
             border: 2px dashed #cbd5e1;
             background: #f8fafc;
@@ -189,7 +317,6 @@
         .upload-subtext { font-size: 0.75rem; color: var(--gray); margin-top: 0.25rem; }
         #file-input { display: none; }
 
-        /* --- Dynamic Quick Links Portal Deck Component --- */
         .portal-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -218,7 +345,6 @@
         }
         .portal-link-btn .icon { font-size: 1.15rem; }
 
-        /* Dynamic Feedback Output Log Box */
         .status-log-window {
             background: #0f172a; color: #38bdf8; font-family: monospace; padding: 1rem; border-radius: 12px; font-size: 0.85rem; min-height: 80px; max-height: 120px; overflow-y: auto; margin-top: 1rem; box-shadow: inset 0 2px 8px rgba(0,0,0,0.2);
         }
@@ -229,45 +355,128 @@
 
         @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
 
-        @media (max-width: 1024px) {
-            .mode-grid { flex-direction: column; padding: 0 1rem; }
-            .container { flex-direction: column; }
-            .info-panel { min-width: 100%; }
-            .chat-panel { min-width: 100%; height: 600px; }
+        /* --- ADVANCED MOBILE OPTIMIZATION OVERRIDES --- */
+        @media (max-width: 968px) {
+            #mode-screen { 
+                flex-direction: column; 
+                padding: 2.5rem 1.25rem; 
+                gap: 2.5rem; 
+                text-align: center;
+            }
+            .portal-left, .portal-right { 
+                width: 100%; 
+                flex: none; 
+            }
+            .mode-title { 
+                text-align: center; 
+                margin-bottom: 2rem;
+            }
+            .mode-title h2 { 
+                font-size: 2.25rem; 
+            }
+            .mode-title p {
+                font-size: 1rem;
+                margin: 0 auto;
+            }
+            .mode-grid {
+                gap: 1rem;
+            }
+            .mode-card {
+                padding: 1.5rem;
+                gap: 1.25rem;
+            }
+            .mode-card::after {
+                display: none; 
+            }
+            .mode-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 2rem;
+            }
+            .mode-text-box h3 {
+                font-size: 1.15rem;
+            }
+            .auth-image-frame {
+                padding: 1.25rem;
+                max-width: 320px;
+                margin: 0 auto;
+            }
+            
+            .container { 
+                flex-direction: column; 
+                padding: 0.5rem;
+                gap: 1.25rem;
+            }
+            
+            .chat-panel { 
+                order: 1; 
+                min-width: 100%; 
+                height: 65vh; 
+                border-radius: 16px;
+            }
+            
+            .info-panel { 
+                order: 2; 
+                min-width: 100%; 
+                gap: 1rem;
+            }
+            
+            .widget-box {
+                padding: 1.25rem;
+                border-radius: 14px;
+            }
+            
+            .upload-dropzone {
+                padding: 1.25rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Intermediate Mode Selection Screen (Initial Entry Point) -->
+    <!-- Professional Landing Bar -->
+    <header class="landing-header" id="landing-nav">
+        <img src="logo.png" alt="NextDeadline Logo" style="height: 40px; width: auto;">
+        <span class="tag-badge">AI Assistant Platform</span>
+    </header>
+
+    <!-- Professional Balanced Target Landing Screen -->
     <div id="mode-screen">
-        <div class="mode-title">
-            <h2>Welcome to NextDeadline</h2>
-            <p style="color: var(--gray); margin-bottom: 1.5rem;">Please choose a workspace track to customize your session context</p>
-        </div>
-        
-        <div class="mode-grid">
-            <div class="mode-card" onclick="launchDashboard('academic')">
-                <div class="mode-icon">⏱️</div>
-                <h3>Academic Planner</h3>
-                <p>Break down assignments into daily milestones and auto-reschedule missed targets dynamically.</p>
+        <div class="portal-left">
+            <div class="mode-title">
+                <h2>Your AI Academic Hub for <span>NextDeadline</span></h2>
+                <p>An intelligent management workspace built to break down complex coursework into actionable milestones and guide you through onboarding.</p>
             </div>
-            <div class="mode-card" onclick="launchDashboard('freshman')">
-                <div class="mode-icon">🎒</div>
-                <h3>Freshman Onboarding</h3>
-                <p>Explore your campus structure, coordinate checklists, and prepare for your orientation milestones.</p>
+            
+            <div class="mode-grid">
+                <div class="mode-card" onclick="launchDashboard('academic')">
+                    <div class="mode-icon">⏱️</div>
+                    <div class="mode-text-box">
+                        <h3>Academic Planner</h3>
+                        <p>Upload schedules to map out assignments into daily, bite-sized tasks and auto-adjust target parameters instantly.</p>
+                    </div>
+                </div>
+                <div class="mode-card" onclick="launchDashboard('freshman')">
+                    <div class="mode-icon">🎒</div>
+                    <div class="mode-text-box">
+                        <h3>Freshman Onboarding</h3>
+                        <p>Interact with navigation guidelines, tracking checklists, and essential campus portal direct access endpoints.</p>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="auth-image-frame">
-            <img src="https://github.com/xinruuuuuuu/NextDateline/blob/main/webimage.jpg?raw=true" alt="Application Overview Dashboard Graphic Asset">
+        <div class="portal-right">
+            <div class="auth-image-frame">
+                <img src="webimage.jpg" alt="Application Workspace Dynamic Mock Illustration Layout">
+            </div>
         </div>
     </div>
 
     <!-- Main Dashboard App Interface Area -->
     <div id="dashboard-screen">
         <header>
-            <img src="https://github.com/xinruuuuuuu/NextDateline/blob/main/logo.png?raw=true" alt="NextDateline Logo" class="header-logo" onclick="returnToModeSelection()">
+            <img src="logo.png" alt="NextDateline Logo" class="header-logo" onclick="returnToModeSelection()">
             <div class="header-actions">
                 <button class="switch-mode-btn" onclick="returnToModeSelection()">🏡 Back to Home</button>
             </div>
@@ -302,9 +511,11 @@
                     
                     <div class="upload-dropzone" id="dropzone" onclick="document.getElementById('file-input').click()">
                         <span class="upload-icon">📁</span>
-                        <span class="upload-text" id="dropzone-text">Drag & drop timetable file or click to browse</span>
-                        <span class="upload-subtext">Accepts Excel (.xlsx), PDF, or Word documents</span>
-                        <input type="file" id="file-input" accept=".xlsx, .xls, .pdf, .docx, .doc" onchange="handleFileSelect(event)">
+                        <!-- FIXED: Visual requirement descriptions updated for PDF validation checks -->
+                        <span class="upload-text" id="dropzone-text">Drag & drop timetable PDF or click to browse</span>
+                        <span class="upload-subtext">Accepts PDF documents only</span>
+                        <!-- FIXED: File picker input constraints limited explicitly to standard pdf mime configurations -->
+                        <input type="file" id="file-input" accept=".pdf" onchange="handleFileSelect(event)">
                     </div>
                 </div>
 
@@ -332,7 +543,6 @@
     <script>
         let selectedTrack = "";
 
-        // FIXED: Added target="_blank" and modified Academic Calendar button name parameter
         function renderStudentPortals() {
             return `
                 <a href="https://politemall.polite.edu.sg" target="_blank" class="portal-link-btn">
@@ -344,10 +554,10 @@
                 <a href="https://play.google.com/store/apps/details?id=com.engage2serve.snapp2" target="_blank" class="portal-link-btn">
                     <span class="icon">📱</span> SNAPP App Play
                 </a>
-                <a href="campus-map.pdf" target="_blank" class="portal-link-btn">
+                <a href="https://github.com/xinruuuuuuu/NextDateline/blob/main/campus-map.pdf" target="_blank" class="portal-link-btn">
                     <span class="icon">🗺️</span> Campus Map PDF
                 </a>
-                <a href="academic-calendar.pdf" target="_blank" class="portal-link-btn" style="grid-column: span 2;">
+                <a href="https://github.com/xinruuuuuuu/NextDateline/blob/main/academic-calendar.pdf" target="_blank" class="portal-link-btn" style="grid-column: span 2;">
                     <span class="icon">📅</span> Academic Calendar 2026 PDF
                 </a>
             `;
@@ -355,6 +565,7 @@
 
         function launchDashboard(trackType) {
             selectedTrack = trackType;
+            document.getElementById('landing-nav').style.display = 'none';
             document.getElementById('mode-screen').style.display = 'none';
             document.getElementById('dashboard-screen').style.display = 'flex';
             
@@ -421,8 +632,15 @@
                 const dt = e.dataTransfer;
                 const files = dt.files;
                 if(files.length) {
-                    document.getElementById('file-input').files = files;
-                    processUploadedFile(files[0]);
+                    // FIXED: Secondary drop safety validation checking for strict PDF extensions
+                    if (files[0].type === "application/pdf" || files[0].name.endsWith('.pdf')) {
+                        document.getElementById('file-input').files = files;
+                        processUploadedFile(files[0]);
+                    } else {
+                        const logFeed = document.getElementById('terminal-feed');
+                        logFeed.innerHTML += `<br><span style="color: var(--error);">[REJECTED] Invalid file structure type. Please upload a PDF file only.</span>`;
+                        logFeed.scrollTop = logFeed.scrollHeight;
+                    }
                 }
             });
         }
@@ -438,14 +656,14 @@
             dropzone.style.borderColor = "var(--primary)";
             dropzone.style.background = "#f5f3ff";
 
-            logFeed.innerHTML += `<br>[FILE INGESTED] Staged structural file asset: "${file.name}" (${Math.round(file.size/1024)} KB)`;
+            logFeed.innerHTML += `<br>[FILE INGESTED] Staged structural PDF file asset: "${file.name}" (${Math.round(file.size/1024)} KB)`;
             logFeed.innerHTML += `<br>[WEBHOOK PREP] Executing binary serialization buffer pipeline...`;
             logFeed.scrollTop = logFeed.scrollHeight;
         }
 
         function resetDropzone() {
             const dzText = document.getElementById('dropzone-text');
-            if (dzText) dzText.innerText = "Drag & drop timetable file or click to browse";
+            if (dzText) dzText.innerText = "Drag & drop timetable PDF or click to browse";
             if (dropzone) {
                 dropzone.style.borderColor = "#cbd5e1";
                 dropzone.style.background = "#f8fafc";
@@ -457,6 +675,7 @@
         function returnToModeSelection() {
             document.getElementById('chat-frame').src = "";
             document.getElementById('dashboard-screen').style.display = 'none';
+            document.getElementById('landing-nav').style.display = 'flex';
             document.getElementById('mode-screen').style.display = 'flex';
         }
     </script>
