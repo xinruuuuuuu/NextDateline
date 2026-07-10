@@ -158,16 +158,17 @@
         .mode-text-box h3 { font-size: 1.45rem; font-weight: 800; margin-bottom: 0.35rem; color: var(--dark); }
         .mode-text-box p { color: var(--gray); font-size: 0.95rem; }
 
+        /* FIXED: Completely solid container without dynamic hover shifts or animations */
         .auth-image-frame {
-            width: 100%; background: var(--glass); backdrop-filter: blur(16px); border-radius: 32px; border: 1px solid rgba(255, 255, 255, 0.5); padding: 2.5rem; box-shadow: 0 30px 60px -15px rgba(15, 23, 42, 0.06);
+            width: 100%; 
+            background: var(--glass); 
+            backdrop-filter: blur(16px); 
+            border-radius: 32px; 
+            border: 1px solid rgba(255, 255, 255, 0.5); 
+            padding: 2.5rem; 
+            box-shadow: 0 30px 60px -15px rgba(15, 23, 42, 0.06);
         }
         .auth-image-frame img { width: 100%; height: auto; display: block; }
-
-        /* FIXED: Level hover structure safely removing drift parameters */
-        .auth-image-frame:hover {
-            transform: translateY(-4px) scale(1.01);
-            box-shadow: 0 35px 70px -10px rgba(15, 23, 42, 0.08);
-        }
 
         /* --- MAIN WORKSPACE SYSTEM AREA --- */
         #dashboard-screen { display: none; flex-direction: column; flex: 1; z-index: 1; }
@@ -198,30 +199,12 @@
 
         /* --- RP VALUE PROPOSITION MODULE --- */
         .purpose-card {
-            background: #fafafa;
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 1.25rem;
-            margin-top: 0.85rem;
+            background: #fafafa; border: 1px solid var(--border); border-radius: 16px; padding: 1.25rem; margin-top: 0.85rem;
         }
-        .purpose-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.85rem;
-            margin-bottom: 1.25rem;
-        }
+        .purpose-item { display: flex; align-items: flex-start; gap: 0.85rem; margin-bottom: 1.25rem; }
         .purpose-item:last-child { margin-bottom: 0; }
         .purpose-icon {
-            font-size: 1.4rem;
-            background: #f0f2fe;
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            border: 1px solid rgba(99, 102, 241, 0.1);
+            font-size: 1.4rem; background: #f0f2fe; width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid rgba(99, 102, 241, 0.1);
         }
         .purpose-text h4 { font-size: 0.95rem; font-weight: 800; color: var(--dark); }
         .purpose-text p { font-size: 0.85rem; color: var(--gray); margin-top: 0.2rem; line-height: 1.4; }
@@ -243,49 +226,44 @@
         }
         .portal-link-btn:hover { border-color: var(--primary); background: #f5f3ff; color: var(--primary); transform: translateY(-3px); }
 
-        /* --- DYNAMIC INTERACTIVE FRESHMAN CHECKLIST --- */
-        .checklist-container {
+        /* --- CAMPUS EXPLORER ENGINE INTERFACE --- */
+        .explorer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
             margin-top: 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
         }
-        .checklist-item {
-            display: flex;
-            align-items: center;
-            gap: 0.85rem;
-            padding: 0.85rem 1rem;
-            background: #f8fafc;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .checklist-item:hover {
-            border-color: rgba(99, 102, 241, 0.3);
-            background: #ffffff;
-        }
-        .checklist-item input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            accent-color: var(--primary);
-            cursor: pointer;
-        }
-        .checklist-label {
-            font-size: 0.88rem;
-            font-weight: 600;
-            color: var(--dark);
-            transition: all 0.2s ease;
-        }
-        /* Dynamic state modifier when checked */
-        .checklist-item.completed {
-            opacity: 0.6;
+        .explorer-chip {
+            padding: 0.65rem;
             background: #f1f5f9;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #475569;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
         }
-        .checklist-item.completed .checklist-label {
-            text-decoration: line-through;
-            color: var(--gray);
+        .explorer-chip:hover, .explorer-chip.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
         }
+        .route-display-card {
+            background: #f8fafc;
+            border-left: 4px solid var(--primary);
+            border-radius: 0 12px 12px 0;
+            padding: 1rem;
+            margin-top: 0.85rem;
+            display: none;
+            animation: fadeInCard 0.3s ease;
+        }
+        @keyframes fadeInCard { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+        .route-display-card h5 { font-size: 0.9rem; font-weight: 800; color: var(--dark); }
+        .route-display-card p { font-size: 0.8rem; color: var(--gray); margin-top: 0.25rem; line-height: 1.4; }
 
         .chat-header { background: white; color: var(--dark); padding: 1.5rem; font-weight: 800; border-bottom: 1px solid var(--border); font-size: 1.05rem; display: flex; align-items: center; gap: 0.6rem; }
         .status-dot { width: 10px; height: 10px; background: var(--primary); border-radius: 50%; display: inline-block; animation: pulse 2s infinite; }
@@ -301,7 +279,7 @@
             .container { flex-direction: column; padding: 0.5rem; }
             .chat-panel { height: 70vh; }
             .info-panel { min-width: 100%; }
-            .instruction-grid { grid-template-columns: 1fr; }
+            .instruction-grid, .explorer-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -414,27 +392,22 @@
                         <!-- Injected via JavaScript -->
                     </div>
 
-                    <!-- ADDED HIGH-INTEREST INTERACTIVE FRESHMAN CHECKLIST HERE -->
-                    <h3 style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border);">📋 Week 1 Survival Tasks</h3>
-                    <p style="font-size:0.85rem; color:var(--gray);">Cross off essential setup benchmarks as you complete onboarding guidelines with the assistant.</p>
+                    <!-- CAMPUS EXPLORER ROUTER -->
+                    <h3 style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border);">📍 Campus Location Router</h3>
+                    <p style="font-size:0.85rem; color:var(--gray);">Click on any common freshman hub to view instant navigation shortcuts across the campus layout.</p>
                     
-                    <div class="checklist-container">
-                        <div class="checklist-item" onclick="toggleChecklistItem(this)">
-                            <input type="checkbox" onclick="event.stopPropagation(); toggleChecklistItem(this.parentElement)">
-                            <span class="checklist-label">Configure secure login credentials on SA3.0 Portal</span>
-                        </div>
-                        <div class="checklist-item" onclick="toggleChecklistItem(this)">
-                            <input type="checkbox" onclick="event.stopPropagation(); toggleChecklistItem(this.parentElement)">
-                            <span class="checklist-label">Download SNAPP App onto personal mobile device</span>
-                        </div>
-                        <div class="checklist-item" onclick="toggleChecklistItem(this)">
-                            <input type="checkbox" onclick="event.stopPropagation(); toggleChecklistItem(this.parentElement)">
-                            <span class="checklist-label">Verify course materials registration on Politemall LMS</span>
-                        </div>
-                        <div class="checklist-item" onclick="toggleChecklistItem(this)">
-                            <input type="checkbox" onclick="event.stopPropagation(); toggleChecklistItem(this.parentElement)">
-                            <span class="checklist-label">Download local copy of 2026 Academic Calendar PDF</span>
-                        </div>
+                    <div class="explorer-grid">
+                        <div class="explorer-chip" onclick="showRoute('trcc', this)">🎭 TRCC</div>
+                        <div class="explorer-chip" onclick="showRoute('agora', this)">🍜 Koufu</div>
+                        <div class="explorer-chip" onclick="showRoute('lawn', this)">☕ The Lawn</div>
+                        <div class="explorer-chip" onclick="showRoute('library', this)">📚 Library</div>
+                        <div class="explorer-chip" onclick="showRoute('sports', this)">🏃 Complex</div>
+                        <div class="explorer-chip" onclick="showRoute('admin', this)">🏢 Main Admin</div>
+                    </div>
+
+                    <div class="route-display-card" id="route-card">
+                        <h5 id="route-target-title">Select Destination</h5>
+                        <p id="route-target-desc">Route information will display here instantly.</p>
                     </div>
                 </div>
 
@@ -475,12 +448,49 @@
             setTimeout(() => { ripple.remove(); launchDashboard(trackType); }, 350); 
         }
 
-        // --- INTERACTIVE FRESHMAN CHECKLIST CALLBACK ENGINE ---
-        function toggleChecklistItem(itemElement) {
-            const checkbox = itemElement.querySelector('input[type="checkbox"]');
-            itemElement.classList.toggle('completed');
-            // Sync checkbox checked property state accurately
-            checkbox.checked = itemElement.classList.contains('completed');
+        // --- INTERACTIVE CAMPUS EXPLORER ROUTING LOGIC ---
+        function showRoute(locationKey, chipElement) {
+            document.querySelectorAll('.explorer-chip').forEach(chip => chip.classList.remove('active'));
+            chipElement.classList.add('active');
+
+            const card = document.getElementById('route-card');
+            const title = document.getElementById('route-target-title');
+            const desc = document.getElementById('route-target-desc');
+
+            // ACCURATE LANDMARK ROUTING MATRIX ENGINE
+            const routeDatabase = {
+                trcc: {
+                    title: "The Republic Cultural Centre (TRCC)",
+                    desc: "Exit from Woodlands North MRT station. Walk along the main sheltered campus pathway past Block E1. Take the escalators down at the cultural wing entrance courtyard."
+                },
+                agora: {
+                    title: "Koufu Food Court (Block E1 Level 1)",
+                    desc: "Head down to Level 1 of Block E1. Located directly beneath the School of Technology and engineering hub lobbies, right next to the south multi-purpose forum court."
+                },
+                lawn: {
+                    title: "The Lawn Food Court (Block W4/W6 Deck)",
+                    desc: "Take the level 3 skyway link bridge over toward the West blocks. The Lawn seating courtyard sits centrally framed between the School of Hospitality and Sports block wings."
+                },
+                library: {
+                    title: "Republic Polytechnic Library",
+                    desc: "Located centrally on campus. Head to the main hub elevators or use the central stairwells to access the main library resource levels and collaborative study zones."
+                },
+                sports: {
+                    title: "Sports & Martial Arts Complex",
+                    desc: "Located on the far West side of campus behind Block W6. Follow the low-level outdoor sheltered walkway directly past the competition swimming pool deck lanes."
+                },
+                admin: {
+                    title: "Main Administration Office (One-Stop Centre)",
+                    desc: "Situated right at the main entrance drop-off point at Block 1, Level 2. Head through the sliding doors directly opposite the main security check-in counter desk."
+                }
+            };
+
+            const data = routeDatabase[locationKey];
+            if(data) {
+                title.innerText = data.title;
+                desc.innerText = data.desc;
+                card.style.display = "block";
+            }
         }
 
         function renderStudentPortals() {
@@ -502,6 +512,9 @@
             const guideBox = document.getElementById('guide-box');
             const shortcutsBox = document.getElementById('shortcuts-box');
             const chatHeaderTitle = document.getElementById('chat-title');
+
+            document.getElementById('route-card').style.display = "none";
+            document.querySelectorAll('.explorer-chip').forEach(chip => chip.classList.remove('active'));
 
             if (trackType === 'academic') {
                 chatHeaderTitle.innerText = `NextDeadline Planner Session`;
