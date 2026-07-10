@@ -163,6 +163,12 @@
         }
         .auth-image-frame img { width: 100%; height: auto; display: block; }
 
+        /* FIXED: Level hover structure safely removing drift parameters */
+        .auth-image-frame:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 35px 70px -10px rgba(15, 23, 42, 0.08);
+        }
+
         /* --- MAIN WORKSPACE SYSTEM AREA --- */
         #dashboard-screen { display: none; flex-direction: column; flex: 1; z-index: 1; }
         
@@ -179,22 +185,107 @@
             display: flex; flex: 1; max-width: 1440px; margin: 1rem auto; width: 100%; padding: 0.5rem 1.5rem; gap: 1.5rem; 
         }
         
-        /* CLEAN LAYOUT PANELS */
-        .info-panel { flex: 0.8; min-width: 380px; display: flex; flex-direction: column; gap: 1.5rem; }
-        .chat-panel { flex: 1.5; display: flex; flex-direction: column; overflow: hidden; height: calc(100vh - 140px); }
+        /* LAYOUT PANELS */
+        .info-panel { flex: 0.95; min-width: 420px; display: flex; flex-direction: column; gap: 1.5rem; }
+        .chat-panel { flex: 1.35; display: flex; flex-direction: column; overflow: hidden; height: calc(100vh - 140px); }
         
         .info-panel, .chat-panel { 
             background: var(--glass); backdrop-filter: blur(16px); border-radius: 24px; border: 1px solid var(--border); box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.04);
         }
 
         .widget-box { background: white; border: 1px solid var(--border); border-radius: 20px; padding: 1.75rem; }
-        .widget-box h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        .widget-box h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; color: var(--dark); }
+
+        /* --- RP VALUE PROPOSITION MODULE --- */
+        .purpose-card {
+            background: #fafafa;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.25rem;
+            margin-top: 0.85rem;
+        }
+        .purpose-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.85rem;
+            margin-bottom: 1.25rem;
+        }
+        .purpose-item:last-child { margin-bottom: 0; }
+        .purpose-icon {
+            font-size: 1.4rem;
+            background: #f0f2fe;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+        }
+        .purpose-text h4 { font-size: 0.95rem; font-weight: 800; color: var(--dark); }
+        .purpose-text p { font-size: 0.85rem; color: var(--gray); margin-top: 0.2rem; line-height: 1.4; }
+
+        /* --- INSTRUCTIONAL GRID --- */
+        .instruction-header { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
+        .instruction-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-top: 0.85rem; }
+        .instruction-step {
+            background: #f8fafc; border: 1px dashed rgba(99, 102, 241, 0.3); border-radius: 14px; padding: 1rem; text-align: center; transition: all 0.25s;
+        }
+        .instruction-step:hover { border-color: var(--primary); background: #f5f3ff; transform: translateY(-2px); }
+        .step-badge { background: var(--primary); color: white; font-size: 0.7rem; font-weight: 900; padding: 0.15rem 0.5rem; border-radius: 10px; display: inline-block; margin-bottom: 0.5rem; }
+        .instruction-step h5 { font-size: 0.85rem; font-weight: 800; color: var(--dark); margin-bottom: 0.25rem; }
+        .instruction-step p { font-size: 0.75rem; color: var(--gray); line-height: 1.3; }
 
         .portal-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.85rem; margin-top: 0.5rem; }
         .portal-link-btn {
             display: flex; align-items: center; gap: 0.7rem; padding: 1rem; background: #f8fafc; border: 1px solid var(--border); border-radius: 14px; color: #334155; font-size: 0.88rem; font-weight: 700; text-decoration: none; transition: all 0.25s;
         }
         .portal-link-btn:hover { border-color: var(--primary); background: #f5f3ff; color: var(--primary); transform: translateY(-3px); }
+
+        /* --- DYNAMIC INTERACTIVE FRESHMAN CHECKLIST --- */
+        .checklist-container {
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            padding: 0.85rem 1rem;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .checklist-item:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            background: #ffffff;
+        }
+        .checklist-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+        .checklist-label {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--dark);
+            transition: all 0.2s ease;
+        }
+        /* Dynamic state modifier when checked */
+        .checklist-item.completed {
+            opacity: 0.6;
+            background: #f1f5f9;
+        }
+        .checklist-item.completed .checklist-label {
+            text-decoration: line-through;
+            color: var(--gray);
+        }
 
         .chat-header { background: white; color: var(--dark); padding: 1.5rem; font-weight: 800; border-bottom: 1px solid var(--border); font-size: 1.05rem; display: flex; align-items: center; gap: 0.6rem; }
         .status-dot { width: 10px; height: 10px; background: var(--primary); border-radius: 50%; display: inline-block; animation: pulse 2s infinite; }
@@ -210,6 +301,7 @@
             .container { flex-direction: column; padding: 0.5rem; }
             .chat-panel { height: 70vh; }
             .info-panel { min-width: 100%; }
+            .instruction-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -237,7 +329,7 @@
                     <div class="mode-icon">⏱️</div>
                     <div class="mode-text-box">
                         <h3>Academic Planner</h3>
-                        <p>Interact with your AI system directly to upload schedules and instantly map assignments into bite-sized daily tasks.</p>
+                        <p>Interact with your AI system directly to upload schedules and instantly map assignments into daily micro-milestones.</p>
                     </div>
                 </div>
                 <div class="mode-card" onclick="createCardRipple(event, 'freshman')">
@@ -267,15 +359,85 @@
         </header>
 
         <div class="container">
-            <!-- Left Side Panel: Shows ONLY on Freshman Mode for shortcuts -->
+            <!-- Left Side Panel: Contextual Mission/Shortcut Deck -->
             <div id="panel-info" class="info-panel">
-                <div class="widget-box">
+                
+                <!-- Value Prop + Step Guide (Academic Planner Track) -->
+                <div class="widget-box" id="guide-box">
+                    <h3>🎯 Why NextDeadline Matters</h3>
+                    <p style="font-size:0.85rem; color:var(--gray);">Empowering RP students to navigate daily modules and stay ahead of key deadlines seamlessly.</p>
+                    
+                    <div class="purpose-card">
+                        <div class="purpose-item">
+                            <div class="purpose-icon">⚡</div>
+                            <div class="purpose-text">
+                                <h4>Daily Milestone Breakdown</h4>
+                                <p>RP's daily learning model moves fast. NextDeadline reads your schedule and immediately chunks major deliverables into stress-free daily tasks.</p>
+                            </div>
+                        </div>
+                        <div class="purpose-item">
+                            <div class="purpose-icon">🎓</div>
+                            <div class="purpose-text">
+                                <h4>Sustained Academic Success</h4>
+                                <p>Maintains high-grade consistency by prioritizing tasks based on upcoming deadlines so you never scramble at the last minute.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="instruction-header">🚀 Quick Setup Guide</h3>
+                    <p style="font-size:0.85rem; color:var(--gray);">Follow these steps to launch your workspace with the assistant on the right panel.</p>
+                    
+                    <div class="instruction-grid">
+                        <div class="instruction-step">
+                            <span class="step-badge">STEP 01</span>
+                            <h5>Click Paperclip</h5>
+                            <p>Find the 📎 icon inside the chat window.</p>
+                        </div>
+                        <div class="instruction-step">
+                            <span class="step-badge">STEP 02</span>
+                            <h5>Drop PDF</h5>
+                            <p>Attach your class module schedule.</p>
+                        </div>
+                        <div class="instruction-step">
+                            <span class="step-badge">STEP 03</span>
+                            <h5>Track Tasks</h5>
+                            <p>Get your daily plan generated instantly.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shortcuts Widget Box (Freshman Mode Only) -->
+                <div class="widget-box" id="shortcuts-box">
                     <h3>🔗 Student Portal Shortcuts</h3>
                     <p style="font-size:0.85rem; color:var(--gray); margin-bottom:0.5rem;">Access essential student portals immediately without leaving your tracking environment.</p>
                     <div class="portal-grid" id="dynamic-portals">
                         <!-- Injected via JavaScript -->
                     </div>
+
+                    <!-- ADDED HIGH-INTEREST INTERACTIVE FRESHMAN CHECKLIST HERE -->
+                    <h3 style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border);">📋 Week 1 Survival Tasks</h3>
+                    <p style="font-size:0.85rem; color:var(--gray);">Cross off essential setup benchmarks as you complete onboarding guidelines with the assistant.</p>
+                    
+                    <div class="checklist-container">
+                        <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                            <input type="checkbox" onclick="event.stopPropagation(); toggleChecklistItem(this.parentElement)">
+                            <span class="checklist-label">Configure secure login credentials on SA3.0 Portal</span>
+                        </div>
+                        <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                            <input type="checkbox" onclick="event.stopPropagation(); toggleChecklistItem(this.parentElement)">
+                            <span class="checklist-label">Download SNAPP App onto personal mobile device</span>
+                        </div>
+                        <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                            <input type="checkbox" onclick="event.stopPropagation(); toggleChecklistItem(this.parentElement)">
+                            <span class="checklist-label">Verify course materials registration on Politemall LMS</span>
+                        </div>
+                        <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                            <input type="checkbox" onclick="event.stopPropagation(); toggleChecklistItem(this.parentElement)">
+                            <span class="checklist-label">Download local copy of 2026 Academic Calendar PDF</span>
+                        </div>
+                    </div>
                 </div>
+
             </div>
 
             <!-- Main Full-Width Chat Panel -->
@@ -313,6 +475,14 @@
             setTimeout(() => { ripple.remove(); launchDashboard(trackType); }, 350); 
         }
 
+        // --- INTERACTIVE FRESHMAN CHECKLIST CALLBACK ENGINE ---
+        function toggleChecklistItem(itemElement) {
+            const checkbox = itemElement.querySelector('input[type="checkbox"]');
+            itemElement.classList.toggle('completed');
+            // Sync checkbox checked property state accurately
+            checkbox.checked = itemElement.classList.contains('completed');
+        }
+
         function renderStudentPortals() {
             return `
                 <a href="https://politemall.polite.edu.sg" target="_blank" class="portal-link-btn"><span class="icon">🏫</span> Politemall LMS</a>
@@ -329,14 +499,14 @@
             document.getElementById('mode-screen').style.display = 'none';
             document.getElementById('dashboard-screen').style.display = 'flex';
             
-            const infoPanel = document.getElementById('panel-info');
+            const guideBox = document.getElementById('guide-box');
+            const shortcutsBox = document.getElementById('shortcuts-box');
             const chatHeaderTitle = document.getElementById('chat-title');
 
             if (trackType === 'academic') {
                 chatHeaderTitle.innerText = `NextDeadline Planner Session`;
-                
-                // Hide the left panel completely to make the chat full screen and straight to the point
-                infoPanel.style.display = "none";
+                guideBox.style.display = "block";
+                shortcutsBox.style.display = "none";
                 
                 const n8nBaseUrl = "https://n8ngc.codeblazar.org/webhook/8016455c-b48b-495f-afcb-ea391c772351/chat";
                 const metadataPayload = encodeURIComponent(JSON.stringify({ mode: trackType }));
@@ -344,9 +514,8 @@
 
             } else if (trackType === 'freshman') {
                 chatHeaderTitle.innerText = `Orientation Assistant Session`;
-                
-                // Show the shortcuts panel only for orientation support
-                infoPanel.style.display = "flex";
+                guideBox.style.display = "none";
+                shortcutsBox.style.display = "block";
                 document.getElementById('dynamic-portals').innerHTML = renderStudentPortals();
                 
                 document.getElementById('chat-frame').src = "https://cdn.botpress.cloud/webchat/v3.6/shareable.html?configUrl=https://files.bpcontent.cloud/2026/07/02/04/20260702040825-S3JZPRAH.json";
