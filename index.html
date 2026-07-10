@@ -12,8 +12,6 @@
             --light: #f8fafc;
             --gray: #64748b;
             --border: rgba(226, 232, 240, 0.8);
-            --success: #10b981;
-            --error: #ef4444;
             --accent-gradient: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
             --glass: rgba(255, 255, 255, 0.78);
         }
@@ -36,7 +34,7 @@
             overflow-x: hidden;
         }
 
-        /* --- IMMERSIVE INTERACTIVE BACKGROUND ORBS --- */
+        /* --- IMMERSIVE BACKGROUND INTERACTIVE ORBS --- */
         .bg-glow-1, .bg-glow-2 {
             position: absolute;
             width: 650px;
@@ -48,18 +46,10 @@
             opacity: 0.18;
             transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .bg-glow-1 {
-            top: -10%;
-            right: -10%;
-            background: var(--primary);
-        }
-        .bg-glow-2 {
-            bottom: -15%;
-            left: -10%;
-            background: #4f46e5;
-        }
+        .bg-glow-1 { top: -10%; right: -10%; background: var(--primary); }
+        .bg-glow-2 { bottom: -15%; left: -10%; background: #4f46e5; }
 
-        /* --- PREMIUM GLASSMORPHISM NAV BAR & ENHANCED LOGO --- */
+        /* --- NAVIGATION HEADER --- */
         .landing-header {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(16px);
@@ -73,7 +63,6 @@
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
         }
 
-        /* FIXED: Amplified Logo Size Engine Parameters */
         .main-brand-logo {
             height: 65px; 
             width: auto;
@@ -82,9 +71,7 @@
             cursor: pointer;
             filter: drop-shadow(0 4px 6px rgba(15, 23, 42, 0.04));
         }
-        .main-brand-logo:hover {
-            transform: scale(1.06);
-        }
+        .main-brand-logo:hover { transform: scale(1.06); }
 
         .tag-badge {
             background: rgba(99, 102, 241, 0.12);
@@ -96,10 +83,9 @@
             text-transform: uppercase;
             letter-spacing: 0.08em;
             border: 1px solid rgba(99, 102, 241, 0.2);
-            box-shadow: 0 2px 10px rgba(99, 102, 241, 0.05);
         }
 
-        /* --- PORTAL FRAME LAYOUT --- */
+        /* --- LANDING SELECTION LAYOUT --- */
         #mode-screen {
             display: flex;
             align-items: center;
@@ -113,25 +99,9 @@
             z-index: 1;
         }
         
-        .portal-left {
-            flex: 1.2;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+        .portal-left { flex: 1.2; display: flex; flex-direction: column; justify-content: center; }
+        .portal-right { flex: 0.8; display: flex; align-items: center; justify-content: center; }
 
-        .portal-right {
-            flex: 0.8;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .mode-title { 
-            text-align: left; 
-            margin-bottom: 2.5rem; 
-        }
-        
         .mode-title h2 { 
             font-size: 3.75rem; 
             font-weight: 900; 
@@ -140,34 +110,15 @@
             margin-bottom: 1rem; 
             line-height: 1.1;
         }
-
         .mode-title h2 span {
             background: var(--accent-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            transition: all 0.4s ease;
-            position: relative;
         }
+        .mode-title p { color: var(--gray); font-size: 1.2rem; line-height: 1.6; margin-bottom: 2.5rem; }
         
-        .mode-title h2:hover span {
-            filter: brightness(1.15) drop-shadow(0 4px 12px rgba(99, 102, 241, 0.15));
-        }
-
-        .mode-title p {
-            color: var(--gray);
-            font-size: 1.2rem;
-            line-height: 1.6;
-            max-width: 600px;
-        }
+        .mode-grid { display: flex; flex-direction: column; gap: 1.5rem; width: 100%; }
         
-        .mode-grid { 
-            display: flex; 
-            flex-direction: column;
-            gap: 1.5rem; 
-            width: 100%; 
-        }
-        
-        /* --- HIGH-END HOVER CARD NEUMORPHISM WITH SCALE AND AUDIO-RIPPLE EFFECTS --- */
         .mode-card {
             background: var(--glass);
             backdrop-filter: blur(16px);
@@ -180,36 +131,16 @@
             display: flex;
             align-items: center;
             gap: 1.75rem;
-            text-align: left;
-            box-shadow: 0 4px 30px rgba(15, 23, 42, 0.01), inset 0 1px 0 rgba(255,255,255,0.6);
             position: relative;
             overflow: hidden;
         }
-
-        .mode-card::after {
-            content: '➔';
-            position: absolute;
-            right: 2.5rem;
-            font-size: 1.35rem;
-            color: var(--primary);
-            opacity: 0;
-            transform: translateX(-10px);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
         .mode-card:hover {
             transform: translateY(-6px) scale(1.015);
-            box-shadow: 0 35px 70px -15px rgba(99, 102, 241, 0.22), 0 10px 30px -10px rgba(99, 102, 241, 0.08), inset 0 1px 0 rgba(255,255,255,0.8);
+            box-shadow: 0 35px 70px -15px rgba(99, 102, 241, 0.22);
             border-color: rgba(99, 102, 241, 0.4);
             background: rgba(255, 255, 255, 0.92);
         }
 
-        .mode-card:hover::after {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        /* Interactive Click Visual Wave Ripple Effect */
         .click-ripple {
             position: absolute;
             background: rgba(99, 102, 241, 0.15);
@@ -218,232 +149,82 @@
             animation: rippleEffect 0.6s ease-out;
             pointer-events: none;
         }
-
-        @keyframes rippleEffect {
-            to { transform: scale(4); opacity: 0; }
-        }
+        @keyframes rippleEffect { to { transform: scale(4); opacity: 0; } }
         
         .mode-icon { 
-            font-size: 2.5rem; 
-            background: white;
-            width: 76px;
-            height: 76px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 20px;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            flex-shrink: 0;
-            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03), inset 0 -2px 0 rgba(0,0,0,0.02);
-            border: 1px solid var(--border);
+            font-size: 2.5rem; background: white; width: 76px; height: 76px; display: flex; align-items: center; justify-content: center; border-radius: 20px; border: 1px solid var(--border);
         }
-
-        .mode-card:hover .mode-icon {
-            background: #e0e7ff;
-            transform: scale(1.1) rotate(6deg);
-            border-color: rgba(99, 102, 241, 0.3);
-            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.15);
-        }
-
-        .mode-text-box { padding-right: 2.5rem; }
-        .mode-text-box h3 { font-size: 1.45rem; font-weight: 800; margin-bottom: 0.35rem; color: var(--dark); letter-spacing: -0.02em; }
-        .mode-text-box p { color: var(--gray); font-size: 0.95rem; line-height: 1.5; }
+        .mode-card:hover .mode-icon { background: #e0e7ff; transform: scale(1.1) rotate(6deg); }
+        .mode-text-box h3 { font-size: 1.45rem; font-weight: 800; margin-bottom: 0.35rem; color: var(--dark); }
+        .mode-text-box p { color: var(--gray); font-size: 0.95rem; }
 
         .auth-image-frame {
-            width: 100%;
-            background: var(--glass);
-            backdrop-filter: blur(16px);
-            border-radius: 32px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 30px 60px -15px rgba(15, 23, 42, 0.06);
-            padding: 2.5rem;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            width: 100%; background: var(--glass); backdrop-filter: blur(16px); border-radius: 32px; border: 1px solid rgba(255, 255, 255, 0.5); padding: 2.5rem; box-shadow: 0 30px 60px -15px rgba(15, 23, 42, 0.06);
         }
-        .auth-image-frame:hover {
-            transform: translateY(-4px) scale(1.02) rotate(-1deg);
-            box-shadow: 0 35px 70px -10px rgba(15, 23, 42, 0.1);
-        }
-        .auth-image-frame img { width: 100%; height: auto; display: block; object-fit: contain; }
+        .auth-image-frame img { width: 100%; height: auto; display: block; }
 
-        /* --- INTERNAL APPLICATION INTERFACE BLOCKS --- */
+        /* --- MAIN WORKSPACE SYSTEM AREA --- */
         #dashboard-screen { display: none; flex-direction: column; flex: 1; z-index: 1; }
         
         .dashboard-header { 
-            background-color: rgba(255, 255, 255, 0.9); 
-            backdrop-filter: blur(12px);
-            padding: 1.2rem 2.5rem; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            border-bottom: 1px solid var(--border);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.01);
-            z-index: 10;
+            background-color: rgba(255, 255, 255, 0.9); backdrop-filter: blur(12px); padding: 1.2rem 2.5rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); z-index: 10;
         }
         
         .switch-mode-btn {
-            padding: 0.7rem 1.4rem;
-            background: #f1f5f9;
-            color: #475569;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 0.85rem;
-            transition: all 0.25s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            padding: 0.7rem 1.4rem; background: #f1f5f9; color: #475569; border: 1px solid var(--border); border-radius: 12px; cursor: pointer; font-weight: 700; font-size: 0.85rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.25s;
         }
-        .switch-mode-btn:hover { 
-            background: var(--dark); 
-            color: white; 
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);
-        }
+        .switch-mode-btn:hover { background: var(--dark); color: white; transform: translateY(-2px); }
 
         .container { 
-            display: flex; 
-            flex-wrap: wrap; 
-            flex: 1; 
-            max-width: 1440px; 
-            margin: 1rem auto; 
-            width: 100%; 
-            padding: 0.5rem 1.5rem; 
-            gap: 1.5rem; 
+            display: flex; flex: 1; max-width: 1440px; margin: 1rem auto; width: 100%; padding: 0.5rem 1.5rem; gap: 1.5rem; 
         }
         
-        .info-panel { flex: 1; min-width: 400px; display: flex; flex-direction: column; gap: 1.5rem; }
-        .chat-panel { flex: 1.3; min-width: 450px; display: flex; flex-direction: column; overflow: hidden; height: calc(100vh - 140px); }
+        /* CLEAN LAYOUT PANELS */
+        .info-panel { flex: 0.8; min-width: 380px; display: flex; flex-direction: column; gap: 1.5rem; }
+        .chat-panel { flex: 1.5; display: flex; flex-direction: column; overflow: hidden; height: calc(100vh - 140px); }
         
         .info-panel, .chat-panel { 
-            background: var(--glass);
-            backdrop-filter: blur(16px);
-            border-radius: 24px; 
-            border: 1px solid var(--border);
-            box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.04);
-            transition: all 0.3s ease;
-        }
-        .info-panel:hover, .chat-panel:hover {
-            box-shadow: 0 15px 35px -5px rgba(15, 23, 42, 0.06);
+            background: var(--glass); backdrop-filter: blur(16px); border-radius: 24px; border: 1px solid var(--border); box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.04);
         }
 
-        .workspace-banner-card {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 1.25rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.02);
-        }
-        .workspace-banner-card h4 { font-size: 0.8rem; text-transform: uppercase; color: var(--gray); letter-spacing: 0.05em; }
-        .workspace-banner-card .status-badge {
-            font-size: 0.85rem; font-weight: 700; padding: 0.35rem 0.75rem; border-radius: 10px;
-        }
-        
-        .widget-box { background: white; border: 1px solid var(--border); border-radius: 20px; padding: 1.75rem; box-shadow: 0 4px 15px rgba(15, 23, 42, 0.01); }
-        .widget-box h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; color: var(--dark); letter-spacing: -0.01em; }
-
-        .upload-dropzone {
-            border: 2px dashed #cbd5e1;
-            background: #f8fafc;
-            border-radius: 16px;
-            padding: 1.75rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-        }
-        .upload-dropzone:hover, .upload-dropzone.dragover {
-            border-color: var(--primary);
-            background: #f5f3ff;
-            transform: scale(1.01);
-            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.1);
-        }
-        .upload-icon { font-size: 2.25rem; margin-bottom: 0.5rem; display: block; transition: transform 0.3s ease; }
-        .upload-dropzone:hover .upload-icon { transform: translateY(-4px); }
-        .upload-text { font-size: 0.88rem; color: #475569; font-weight: 700; }
-        .upload-subtext { font-size: 0.75rem; color: var(--gray); margin-top: 0.35rem; }
-        #file-input { display: none; }
+        .widget-box { background: white; border: 1px solid var(--border); border-radius: 20px; padding: 1.75rem; }
+        .widget-box h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
 
         .portal-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.85rem; margin-top: 0.5rem; }
         .portal-link-btn {
-            display: flex;
-            align-items: center;
-            gap: 0.7rem;
-            padding: 1rem;
-            background: #f8fafc;
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            color: #334155;
-            font-size: 0.88rem;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.01);
+            display: flex; align-items: center; gap: 0.7rem; padding: 1rem; background: #f8fafc; border: 1px solid var(--border); border-radius: 14px; color: #334155; font-size: 0.88rem; font-weight: 700; text-decoration: none; transition: all 0.25s;
         }
-        .portal-link-btn:hover {
-            border-color: var(--primary);
-            background: #f5f3ff;
-            color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 20px -8px rgba(99, 102, 241, 0.2);
-        }
-        .portal-link-btn .icon { font-size: 1.25rem; transition: transform 0.2s; }
-        .portal-link-btn:hover .icon { transform: scale(1.15); }
+        .portal-link-btn:hover { border-color: var(--primary); background: #f5f3ff; color: var(--primary); transform: translateY(-3px); }
 
-        .status-log-window {
-            background: #0f172a; color: #38bdf8; font-family: 'Fira Code', monospace; padding: 1.25rem; border-radius: 16px; font-size: 0.85rem; min-height: 100px; max-height: 140px; overflow-y: auto; margin-top: 1rem; box-shadow: inset 0 4px 12px rgba(0,0,0,0.3); line-height: 1.6;
-        }
-
-        .chat-header { background: white; color: var(--dark); padding: 1.5rem; font-weight: 800; border-bottom: 1px solid var(--border); font-size: 1.05rem; display: flex; align-items: center; gap: 0.6rem; box-shadow: 0 2px 10px rgba(0,0,0,0.01); }
-        .status-dot { width: 10px; height: 10px; background: var(--primary); border-radius: 50%; display: inline-block; animation: pulse 2s infinite; box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2); }
+        .chat-header { background: white; color: var(--dark); padding: 1.5rem; font-weight: 800; border-bottom: 1px solid var(--border); font-size: 1.05rem; display: flex; align-items: center; gap: 0.6rem; }
+        .status-dot { width: 10px; height: 10px; background: var(--primary); border-radius: 50%; display: inline-block; animation: pulse 2s infinite; }
         .chat-iframe { width: 100%; height: 100%; border: none; flex: 1; background: #f8fafc; }
 
-        @keyframes pulse { 0% { opacity: 0.4; transform: scale(0.9); } 50% { opacity: 1; transform: scale(1.1); } 100% { opacity: 0.4; transform: scale(0.9); } }
+        @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
 
-        /* --- ADVANCED MOBILE OPTIMIZATION OVERRIDES --- */
         @media (max-width: 968px) {
-            #mode-screen { flex-direction: column; padding: 2.5rem 1.25rem; gap: 2.5rem; text-align: center; }
-            .portal-left, .portal-right { width: 100%; flex: none; }
-            .mode-title { text-align: center; margin-bottom: 2rem; }
+            #mode-screen { flex-direction: column; padding: 2.5rem 1.25rem; text-align: center; }
+            .portal-left, .portal-right { width: 100%; }
             .mode-title h2 { font-size: 2.5rem; }
-            .mode-title p { font-size: 1rem; margin: 0 auto; }
-            .mode-grid { gap: 1rem; }
-            .mode-card { padding: 1.5rem; gap: 1.25rem; }
-            .mode-card::after { display: none; }
-            .mode-icon { width: 60px; height: 60px; font-size: 2rem; }
-            .mode-text-box h3 { font-size: 1.15rem; }
-            
-            /* FIXED: Enhanced mobile safety parameters for big logo structures */
             .main-brand-logo { height: 50px; }
-            .landing-header { padding: 1.25rem 1.5rem; }
-
-            .auth-image-frame { padding: 1.25rem; max-width: 320px; margin: 0 auto; }
-            .container { flex-direction: column; padding: 0.5rem; gap: 1.25rem; }
-            .chat-panel { order: 1; min-width: 100%; height: 65vh; border-radius: 16px; }
-            .info-panel { order: 2; min-width: 100%; gap: 1rem; }
-            .widget-box { padding: 1.25rem; border-radius: 14px; }
-            .upload-dropzone { padding: 1.25rem; }
+            .container { flex-direction: column; padding: 0.5rem; }
+            .chat-panel { height: 70vh; }
+            .info-panel { min-width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Dynamic Mouse Tracking Background Orbs -->
     <div class="bg-glow-1" id="orb-1"></div>
     <div class="bg-glow-2" id="orb-2"></div>
 
-    <!-- Premium Landing Bar -->
+    <!-- Navigation Bar -->
     <header class="landing-header" id="landing-nav">
-        <!-- FIXED: Enhanced Logo Box Object Layout -->
         <img src="logo.png" alt="NextDeadline Logo" class="main-brand-logo">
         <span class="tag-badge">AI Assistant Platform</span>
     </header>
 
-    <!-- Professional Balanced Target Landing Screen -->
+    <!-- Selection Screen -->
     <div id="mode-screen">
         <div class="portal-left">
             <div class="mode-title">
@@ -452,12 +233,11 @@
             </div>
             
             <div class="mode-grid">
-                <!-- Added interactive visual ripple callbacks -->
                 <div class="mode-card" onclick="createCardRipple(event, 'academic')">
                     <div class="mode-icon">⏱️</div>
                     <div class="mode-text-box">
                         <h3>Academic Planner</h3>
-                        <p>Upload schedules to map out assignments into daily, bite-sized tasks and auto-adjust target parameters instantly.</p>
+                        <p>Interact with your AI system directly to upload schedules and instantly map assignments into bite-sized daily tasks.</p>
                     </div>
                 </div>
                 <div class="mode-card" onclick="createCardRipple(event, 'freshman')">
@@ -472,15 +252,14 @@
 
         <div class="portal-right">
             <div class="auth-image-frame">
-                <img src="webimage.jpg" alt="Application Workspace Dynamic Mock Illustration Layout">
+                <img src="webimage.jpg" alt="Application Workspace Illustration">
             </div>
         </div>
     </div>
 
-    <!-- Main Dashboard App Interface Area -->
+    <!-- Workspace Screen Layout -->
     <div id="dashboard-screen">
         <header class="dashboard-header">
-            <!-- FIXED: Synced Enhanced Logo Layout to inside workspace view -->
             <img src="logo.png" alt="NextDateline Logo" class="main-brand-logo" onclick="returnToModeSelection()">
             <div class="header-actions">
                 <button class="switch-mode-btn" onclick="returnToModeSelection()">🏡 Back to Home</button>
@@ -488,52 +267,18 @@
         </header>
 
         <div class="container">
-            <!-- Left Side Panel: Reference Hub Framework -->
+            <!-- Left Side Panel: Shows ONLY on Freshman Mode for shortcuts -->
             <div id="panel-info" class="info-panel">
-                
-                <!-- Simplified Session Tracker Heading Banner -->
-                <div class="workspace-banner-card">
-                    <div>
-                        <h4 style="color: var(--gray); font-size: 0.75rem;">Active Environment</h4>
-                        <div style="font-size: 1.25rem; font-weight: 800; color: var(--dark); margin-top: 0.15rem;" id="banner-track-name">Loading Track...</div>
-                    </div>
-                    <div class="status-badge" id="banner-track-badge" style="background: #e0e7ff; color: var(--primary);">Secure Session</div>
-                </div>
-                
-                <!-- Dynamic Quick Links Deck Widget -->
-                <div class="widget-box" id="portal-box">
+                <div class="widget-box">
                     <h3>🔗 Student Portal Shortcuts</h3>
                     <p style="font-size:0.85rem; color:var(--gray); margin-bottom:0.5rem;">Access essential student portals immediately without leaving your tracking environment.</p>
                     <div class="portal-grid" id="dynamic-portals">
-                        <!-- Injected dynamically via JavaScript -->
+                        <!-- Injected via JavaScript -->
                     </div>
                 </div>
-                
-                <!-- Dynamic File Upload Dropzone Box (Only shows on Academic Track) -->
-                <div class="widget-box" id="upload-box">
-                    <h3 id="upload-box-title">📅 Upload Class Schedule</h3>
-                    <p style="font-size:0.85rem; color:var(--gray); margin-bottom:0.75rem;">Upload your schedule file to feed structural context parameters directly into the assistant runtime.</p>
-                    
-                    <div class="upload-dropzone" id="dropzone" onclick="document.getElementById('file-input').click()">
-                        <span class="upload-icon">📁</span>
-                        <span class="upload-text" id="dropzone-text">Drag & drop timetable PDF or click to browse</span>
-                        <span class="upload-subtext">Accepts PDF documents only</span>
-                        <input type="file" id="file-input" accept=".pdf" onchange="handleFileSelect(event)">
-                    </div>
-                </div>
-
-                <!-- Simulation Processing Activity Window -->
-                <div class="widget-box" style="margin-top: -0.5rem;">
-                    <h3 style="font-size: 0.95rem; color: var(--gray);">System Processing Feed</h3>
-                    <!-- Injected with live terminal typing controller -->
-                    <div class="status-log-window" id="terminal-feed">
-                        &gt; System standby. Waiting for context initialization...
-                    </div>
-                </div>
-
             </div>
 
-            <!-- Right Side Panel: Live Assistant Network Endpoint -->
+            <!-- Main Full-Width Chat Panel -->
             <div id="panel-chat" class="chat-panel">
                 <div class="chat-header">
                     <div class="status-dot"></div>
@@ -547,74 +292,34 @@
     <script>
         let selectedTrack = "";
 
-        // --- INTERACTIVE EYE-CATCHING PARALLAX SYSTEM ---
+        // --- BACKGROUND PARALLAX EFFECTS ---
         document.addEventListener('mousemove', (e) => {
             const orb1 = document.getElementById('orb-1');
             const orb2 = document.getElementById('orb-2');
-            
             const moveX = (e.clientX - window.innerWidth / 2) * 0.04;
             const moveY = (e.clientY - window.innerHeight / 2) * 0.04;
-            
             if(orb1) orb1.style.transform = `translate(${moveX}px, ${moveY}px)`;
             if(orb2) orb2.style.transform = `translate(${-moveX}px, ${-moveY}px)`;
         });
 
-        // --- HYPE-BUILDING RIPPLE CONTROLLER ---
         function createCardRipple(event, trackType) {
             const card = event.currentTarget;
             const ripple = document.createElement('span');
             ripple.classList.add('click-ripple');
-            
             const rect = card.getBoundingClientRect();
-            const x = event.clientX - rect.left;
-            const y = event.clientY - rect.top;
-            
-            ripple.style.left = `${x}px`;
-            ripple.style.top = `${y}px`;
-            
+            ripple.style.left = `${event.clientX - rect.left}px`;
+            ripple.style.top = `${event.clientY - rect.top}px`;
             card.appendChild(ripple);
-            
-            setTimeout(() => {
-                ripple.remove();
-                launchDashboard(trackType);
-            }, 350); // Small fluid delay to let ripple render before tracking swaps
-        }
-
-        // --- REAL-TIME LIVE TYPING FEED SYSTEM (Improves interest score) ---
-        function printTerminalLog(text) {
-            const logFeed = document.getElementById('terminal-feed');
-            let currentText = logFeed.innerHTML + "<br>&gt; ";
-            let i = 0;
-            
-            function typeChar() {
-                if (i < text.length) {
-                    currentText += text.charAt(i);
-                    logFeed.innerHTML = currentText;
-                    logFeed.scrollTop = logFeed.scrollHeight;
-                    i++;
-                    setTimeout(typeChar, 12); // Speed parameters for typing mechanics
-                }
-            }
-            typeChar();
+            setTimeout(() => { ripple.remove(); launchDashboard(trackType); }, 350); 
         }
 
         function renderStudentPortals() {
             return `
-                <a href="https://politemall.polite.edu.sg" target="_blank" class="portal-link-btn">
-                    <span class="icon">🏫</span> Politemall LMS
-                </a>
-                <a href="https://mysa.rp.edu.sg/" target="_blank" class="portal-link-btn">
-                    <span class="icon">📝</span> SA3.0 Portal
-                </a>
-                <a href="https://play.google.com/store/apps/details?id=com.engage2serve.snapp2" target="_blank" class="portal-link-btn">
-                    <span class="icon">📱</span> SNAPP App Play
-                </a>
-                <a href="campus-map.pdf" target="_blank" class="portal-link-btn">
-                    <span class="icon">🗺️</span> Campus Map PDF
-                </a>
-                <a href="academic-calendar.pdf" target="_blank" class="portal-link-btn" style="grid-column: span 2;">
-                    <span class="icon">📅</span> Academic Calendar 2026 PDF
-                </a>
+                <a href="https://politemall.polite.edu.sg" target="_blank" class="portal-link-btn"><span class="icon">🏫</span> Politemall LMS</a>
+                <a href="https://mysa.rp.edu.sg/" target="_blank" class="portal-link-btn"><span class="icon">📝</span> SA3.0 Portal</a>
+                <a href="https://play.google.com/store/apps/details?id=com.engage2serve.snapp2" target="_blank" class="portal-link-btn"><span class="icon">📱</span> SNAPP App</a>
+                <a href="campus-map.pdf" target="_blank" class="portal-link-btn"><span class="icon">🗺️</span> Campus Map</a>
+                <a href="academic-calendar.pdf" target="_blank" class="portal-link-btn" style="grid-column: span 2;"><span class="icon">📅</span> Academic Calendar 2026</a>
             `;
         }
 
@@ -624,112 +329,28 @@
             document.getElementById('mode-screen').style.display = 'none';
             document.getElementById('dashboard-screen').style.display = 'flex';
             
-            const logFeed = document.getElementById('terminal-feed');
+            const infoPanel = document.getElementById('panel-info');
             const chatHeaderTitle = document.getElementById('chat-title');
-            const uploadBox = document.getElementById('upload-box');
-            const portalBox = document.getElementById('portal-box');
-            const trackNameDisplay = document.getElementById('banner-track-name');
-            const trackBadgeDisplay = document.getElementById('banner-track-badge');
-            
-            logFeed.innerHTML = "[SYSTEM INITIALIZATION FINISHED]";
-            resetDropzone();
 
             if (trackType === 'academic') {
-                trackNameDisplay.innerText = "Academic Planner";
-                trackBadgeDisplay.innerText = "Planner Active";
-                trackBadgeDisplay.style.background = "#e0e7ff";
-                trackBadgeDisplay.style.color = "var(--primary)";
-                
                 chatHeaderTitle.innerText = `NextDeadline Planner Session`;
-                uploadBox.style.display = "block"; 
-                portalBox.style.display = "none"; 
                 
-                setTimeout(() => {
-                    printTerminalLog(`Channel sync established securely.`);
-                    printTerminalLog(`Context target bounds restricted to: ${trackType.toUpperCase()}`);
-                }, 100);
-
+                // Hide the left panel completely to make the chat full screen and straight to the point
+                infoPanel.style.display = "none";
+                
                 const n8nBaseUrl = "https://n8ngc.codeblazar.org/webhook/8016455c-b48b-495f-afcb-ea391c772351/chat";
-                const metadataPayload = encodeURIComponent(JSON.stringify({ 
-                    mode: trackType 
-                }));
+                const metadataPayload = encodeURIComponent(JSON.stringify({ mode: trackType }));
                 document.getElementById('chat-frame').src = `${n8nBaseUrl}?metadata=${metadataPayload}`;
 
             } else if (trackType === 'freshman') {
-                trackNameDisplay.innerText = "Freshman Onboarding";
-                trackBadgeDisplay.innerText = "Orientation Mode";
-                trackBadgeDisplay.style.background = "#fef3c7";
-                trackBadgeDisplay.style.color = "#d97706";
-
                 chatHeaderTitle.innerText = `Orientation Assistant Session`;
                 
-                uploadBox.style.display = "none"; 
-                portalBox.style.display = "block"; 
+                // Show the shortcuts panel only for orientation support
+                infoPanel.style.display = "flex";
                 document.getElementById('dynamic-portals').innerHTML = renderStudentPortals();
                 
-                setTimeout(() => {
-                    printTerminalLog(`Orientation sync channel loaded standard templates.`);
-                    printTerminalLog(`Direct document pointers mounted: Relative PDF Engine Active.`);
-                }, 100);
-
                 document.getElementById('chat-frame').src = "https://cdn.botpress.cloud/webchat/v3.6/shareable.html?configUrl=https://files.bpcontent.cloud/2026/07/02/04/20260702040825-S3JZPRAH.json";
             }
-        }
-
-        /* --- Drag and Drop Logic Handling --- */
-        const dropzone = document.getElementById('dropzone');
-        if (dropzone) {
-            ['dragenter', 'dragover'].forEach(eventName => {
-                dropzone.addEventListener(eventName, (e) => {
-                    e.preventDefault();
-                    dropzone.classList.add('dragover');
-                }, false);
-            });
-
-            ['dragleave', 'drop'].forEach(eventName => {
-                dropzone.addEventListener(eventName, (e) => {
-                    e.preventDefault();
-                    dropzone.classList.remove('dragover');
-                }, false);
-            });
-
-            dropzone.addEventListener('drop', (e) => {
-                const dt = e.dataTransfer;
-                const files = dt.files;
-                if(files.length) {
-                    if (files[0].type === "application/pdf" || files[0].name.endsWith('.pdf')) {
-                        document.getElementById('file-input').files = files;
-                        processUploadedFile(files[0]);
-                    } else {
-                        printTerminalLog(`[REJECTED] Incompatible type parsing rules. PDF needed.`);
-                    }
-                }
-            });
-        }
-
-        function handleFileSelect(e) {
-            const files = e.target.files;
-            if(files.length) processUploadedFile(files[0]);
-        }
-
-        function processUploadedFile(file) {
-            document.getElementById('dropzone-text').innerText = `📄 Ready: ${file.name}`;
-            dropzone.style.borderColor = "var(--primary)";
-            dropzone.style.background = "#f5f3ff";
-
-            printTerminalLog(`Ingested PDF asset payload: "${file.name}" (${Math.round(file.size/1024)} KB)`);
-            printTerminalLog(`Initializing pipeline serialization context structures...`);
-        }
-
-        function resetDropzone() {
-            const dzText = document.getElementById('dropzone-text');
-            if (dzText) dzText.innerText = "Drag & drop timetable PDF or click to browse";
-            if (dropzone) {
-                dropzone.style.borderColor = "#cbd5e1";
-                dropzone.style.background = "#f8fafc";
-            }
-            const fileIn = document.getElementById('file-input');
-            if (fileIn) fileIn.value = "";
         }
 
         function returnToModeSelection() {
