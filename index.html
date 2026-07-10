@@ -6,7 +6,7 @@
     <title>NextDeadline - Smart Academic Planner</title>
     <style>
         :root {
-            --primary: #6366f1;
+            --primary: #6366f1; 
             --primary-hover: #4f46e5;
             --dark: #0f172a;
             --light: #f8fafc;
@@ -14,7 +14,8 @@
             --border: #e2e8f0;
             --success: #10b981;
             --error: #ef4444;
-            --gradient: linear-gradient(135deg, #4f46e5 0%, #6366f1 50%, #a5b4fc 100%);
+            --gradient: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            --accent-gradient: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
         }
         
         * { 
@@ -25,7 +26,7 @@
         }
         
         body { 
-            background-color: var(--light); 
+            background-color: #f1f5f9; 
             color: var(--dark); 
             min-height: 100vh; 
             display: flex; 
@@ -41,10 +42,9 @@
             background: white;
         }
         
-        /* Left Hero Banner Showcase */
         .auth-hero {
             flex: 1.2;
-            background: var(--gradient);
+            background: var(--accent-gradient);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -54,39 +54,22 @@
             overflow: hidden;
         }
 
-        /* Group Logo Built with Pure CSS Variables */
         .brand-logo-area {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-weight: 800;
-            font-size: 1.4rem;
-            letter-spacing: -0.03em;
+            background: rgba(255, 255, 255, 0.15); 
+            backdrop-filter: blur(12px);
+            padding: 1rem 1.5rem; 
+            border-radius: 16px; 
+            width: fit-content;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .logo-icon {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-        
-        .auth-hero::before {
-            content: '';
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
-            border-radius: 50%;
-            top: -100px;
-            left: -100px;
+        /* FIXED: Increased logo dimensions for visibility */
+        .brand-logo-area img {
+            height: 85px; 
+            width: auto; 
+            display: block;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
         }
 
         .hero-content {
@@ -98,67 +81,55 @@
         }
 
         .hero-content h2 {
-            font-size: 3rem;
+            font-size: 2.75rem;
             font-weight: 900;
             letter-spacing: -0.04em;
-            line-height: 1.15;
+            line-height: 1.2;
             margin-bottom: 1.25rem;
+            background: linear-gradient(to right, #ffffff, #e0e7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero-content p {
-            color: #e0e7ff;
-            font-size: 1.15rem;
+            color: #cbd5e1;
+            font-size: 1.1rem;
             line-height: 1.6;
             margin-bottom: 2.5rem;
         }
 
-        /* Interactive App UI Preview Element */
-        .app-preview-mock {
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
-            border-radius: 16px;
-            padding: 1.5rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        /* NEW: Responsive structure wrapper for the custom landing image */
+        .auth-image-frame {
             width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            background: rgba(255, 255, 255, 0.05);
         }
 
-        .mock-header {
-            display: flex;
-            gap: 6px;
-            margin-bottom: 1rem;
+        .auth-image-frame img {
+            width: 350px;
+            margin: 0 auto;
+            height: auto;
+            display: block;
+            object-fit: cover;
         }
-
-        .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.3); }
-        .dot.red { background: #ef4444; }
-        .dot.yellow { background: #f59e0b; }
-        .dot.green { background: #10b981; }
-
-        .mock-row {
-            height: 12px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 4px;
-            margin-bottom: 0.75rem;
-            width: 85%;
-        }
-        .mock-row.short { width: 45%; background: rgba(255,255,255,0.15); }
-        .mock-row.accent { background: #a5b4fc; width: 65%; }
         
-        /* Right Login Form Container */
         .auth-container { 
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 2rem;
-            background-color: var(--light);
+            background-color: #f8fafc;
         }
         
         .auth-card { 
             background: white; 
-            padding: 3rem 2.5rem; 
-            border-radius: 20px; 
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.03), 0 10px 10px -5px rgba(0,0,0,0.03); 
+            padding: 3.5rem 2.5rem; 
+            border-radius: 24px; 
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.02), 0 10px 10px -5px rgba(0,0,0,0.02); 
             width: 100%; 
             max-width: 440px; 
             border: 1px solid var(--border);
@@ -172,34 +143,18 @@
             letter-spacing: -0.03em;
         }
         
-        .auth-card p { 
-            color: var(--gray); 
-            margin-bottom: 2.25rem; 
-            font-size: 0.95rem; 
-        }
-        
-        .input-group { 
-            text-align: left; 
-            margin-bottom: 1.75rem; 
-        }
-        
-        .input-group label { 
-            display: block; 
-            font-weight: 600; 
-            font-size: 0.85rem; 
-            margin-bottom: 0.6rem; 
-            color: #334155; 
-        }
+        .auth-card p { color: var(--gray); margin-bottom: 2.25rem; font-size: 0.95rem; }
+        .input-group { text-align: left; margin-bottom: 1.75rem; }
+        .input-group label { display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 0.6rem; color: #334155; }
         
         .input-group input { 
             width: 100%; 
             padding: 0.85rem 1rem; 
             border: 1px solid var(--border); 
-            border-radius: 10px; 
+            border-radius: 12px; 
             font-size: 1rem; 
             transition: all 0.2s ease;
             background-color: #f8fafc;
-            color: var(--dark);
         }
         
         .input-group input:focus { 
@@ -211,41 +166,28 @@
         
         .auth-btn { 
             width: 100%; 
-            padding: 0.95rem; 
-            background: var(--primary); 
+            padding: 1rem; 
+            background: var(--accent-gradient); 
             color: white; 
             border: none; 
-            border-radius: 10px; 
+            border-radius: 12px; 
             font-size: 1rem; 
             font-weight: 600; 
             cursor: pointer; 
             transition: all 0.2s ease; 
-            box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.2);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
         }
         
         .auth-btn:hover { 
-            background: var(--primary-hover); 
             transform: translateY(-1px);
-            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 8px 16px rgba(99, 102, 241, 0.3);
         }
         
-        .toggle-auth { 
-            margin-top: 2rem; 
-            font-size: 0.9rem; 
-            color: var(--gray); 
-        }
-        
-        .toggle-auth span { 
-            color: var(--primary); 
-            cursor: pointer; 
-            font-weight: 600; 
-        }
-        
-        .toggle-auth span:hover { text-decoration: underline; }
+        .toggle-auth { margin-top: 2rem; font-size: 0.9rem; color: var(--gray); text-align: center; }
+        .toggle-auth span { color: var(--primary); cursor: pointer; font-weight: 600; }
         .error-msg { color: var(--error); font-size: 0.85rem; margin-top: 0.6rem; display: none; font-weight: 500; }
-        .success-msg { color: var(--success); font-size: 0.85rem; margin-top: 0.6rem; display: none; font-weight: 500; }
 
-        /* --- Mode Selection Portal --- */
+        /* --- Interactive Mode Selection Portal --- */
         #mode-screen {
             display: none;
             flex-direction: column;
@@ -253,333 +195,249 @@
             justify-content: center;
             flex: 1;
             padding: 2rem;
-            background-color: var(--light);
+            background-color: #f1f5f9;
         }
         
-        .mode-title {
-            text-align: center;
-            margin-bottom: 2.5rem;
-        }
-        
-        .mode-title h2 {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-        
-        .mode-grid {
-            display: flex;
-            gap: 2rem;
-            max-width: 800px;
-            width: 100%;
-        }
+        .mode-title { text-align: center; margin-bottom: 2.5rem; }
+        .mode-title h2 { font-size: 2.25rem; font-weight: 800; color: var(--dark); letter-spacing: -0.03em; }
+        .mode-grid { display: flex; gap: 2rem; max-width: 840px; width: 100%; }
         
         .mode-card {
             flex: 1;
             background: white;
-            border: 2px solid var(--border);
-            border-radius: 16px;
-            padding: 2.5rem 2rem;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 3rem 2rem;
             cursor: pointer;
-            transition: all 0.25s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
         }
         
-        .mode-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 20px -5px rgba(99, 102, 241, 0.15);
-        }
-        
-        .mode-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .mode-card h3 {
-            font-size: 1.35rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-            color: var(--dark);
-        }
-        
-        .mode-card p {
-            color: var(--gray);
-            font-size: 0.95rem;
+        .mode-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: transparent; transition: background 0.2s;
         }
 
-        /* --- Main Dashboard Styles --- */
-        #dashboard-screen { 
-            display: none; 
-            flex-direction: column; 
-            flex: 1; 
+        .mode-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            border-color: #cbd5e1;
         }
+        
+        .mode-card:hover::before { background: var(--accent-gradient); }
+        .mode-icon { font-size: 3rem; margin-bottom: 1.5rem; display: inline-block; }
+        .mode-card h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--dark); }
+        .mode-card p { color: var(--gray); font-size: 0.95rem; line-height: 1.5; }
+
+        /* --- Main App Layout --- */
+        #dashboard-screen { display: none; flex-direction: column; flex: 1; }
         
         header { 
             background-color: white; 
-            padding: 1.25rem 2rem; 
+            padding: 1rem 2rem; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
             border-bottom: 1px solid var(--border);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
         }
         
-        header h1 { 
-            color: var(--dark); 
-            font-size: 1.5rem; 
-            font-weight: 800;
-            letter-spacing: -0.02em;
-        }
-        
-        header h1 span {
-            color: var(--primary);
-        }
-        
-        .header-actions {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
+        /* FIXED: Increased inner system dashboard header logo size */
+        .header-logo { height: 50px; width: auto; cursor: pointer; }
+        .header-actions { display: flex; gap: 0.75rem; align-items: center; }
         
         .switch-mode-btn {
             padding: 0.6rem 1.2rem;
             background: #f1f5f9;
             color: #475569;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             font-weight: 600;
             font-size: 0.85rem;
             transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
-        .switch-mode-btn:hover {
-            background: #e2e8f0;
-            color: var(--dark);
-        }
+        .switch-mode-btn:hover { background: #e2e8f0; color: var(--dark); }
         
         .logout-btn { 
             padding: 0.6rem 1.2rem; 
             background: #fff; 
             color: #64748b; 
             border: 1px solid var(--border); 
-            border-radius: 8px; 
+            border-radius: 10px; 
             cursor: pointer; 
             font-weight: 600; 
             font-size: 0.85rem;
             transition: all 0.2s;
         }
         
-        .logout-btn:hover { 
-            background: #f1f5f9; 
-            color: #334155;
-        }
+        .logout-btn:hover { background: #f1f5f9; color: #334155; }
 
         .container { 
             display: flex; 
             flex-wrap: wrap; 
             flex: 1; 
             max-width: 1440px; 
-            margin: 2rem auto; 
+            margin: 1.5rem auto; 
             width: 100%; 
-            padding: 0 2rem; 
-            gap: 2rem; 
+            padding: 0.5rem 1.5rem; 
+            gap: 1.5rem; 
         }
         
-        .mobile-nav {
-            display: none;
-            background: white;
-            border-bottom: 1px solid var(--border);
-            width: 100%;
-        }
+        .info-panel { flex: 1; min-width: 400px; display: flex; flex-direction: column; gap: 1.5rem; }
+        .chat-panel { flex: 1.3; min-width: 450px; display: flex; flex-direction: column; overflow: hidden; height: calc(100vh - 120px); }
         
-        .mobile-nav button {
-            flex: 1;
-            padding: 1.2rem;
-            border: none;
-            background: none;
-            font-weight: 700;
-            color: var(--gray);
-            font-size: 0.9rem;
-            cursor: pointer;
-        }
-        
-        .mobile-nav button.active {
-            color: var(--primary);
-            border-bottom: 3px solid var(--primary);
-        }
-
         .info-panel, .chat-panel { 
             background: white; 
-            border-radius: 16px; 
+            border-radius: 20px; 
             border: 1px solid var(--border);
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.01), 0 2px 4px -1px rgba(0,0,0,0.01);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
         }
 
-        .info-panel { 
-            flex: 1; 
-            min-width: 360px; 
-            padding: 2.5rem; 
+        /* --- Focused Header Banner Card --- */
+        .workspace-banner-card {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .workspace-banner-card h4 { font-size: 0.8rem; text-transform: uppercase; color: var(--gray); letter-spacing: 0.05em; }
+        .workspace-banner-card .status-badge {
+            font-size: 0.85rem; font-weight: 700; padding: 0.35rem 0.75rem; border-radius: 8px;
         }
         
-        .info-panel h2 { 
-            margin-bottom: 1.5rem; 
-            color: var(--dark); 
-            font-weight: 800;
-            font-size: 1.75rem;
-            letter-spacing: -0.02em;
+        /* --- General Widget Containers --- */
+        .widget-box { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; }
+        .widget-box h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+
+        /* --- Premium Schedule Dropzone File Uploader Component --- */
+        #upload-box { display: block; }
+        .upload-dropzone {
+            border: 2px dashed #cbd5e1;
+            background: #f8fafc;
+            border-radius: 14px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
         }
-        
-        .user-welcome { 
-            font-size: 0.95rem; 
-            font-weight: 600; 
-            margin-bottom: 2rem; 
-            background: #f0fdf4; 
-            padding: 0.85rem 1.25rem; 
-            border-radius: 10px; 
-            color: #166534; 
-            border: 1px solid #bbf7d0;
-            display: inline-block;
+        .upload-dropzone:hover, .upload-dropzone.dragover {
+            border-color: var(--primary);
+            background: #f5f3ff;
         }
-        
-        .workflow-steps { margin-top: 1.5rem; }
-        
-        .step { 
-            display: flex; 
-            gap: 1.25rem; 
-            margin-bottom: 2rem; 
-            align-items: flex-start; 
+        .upload-icon { font-size: 2rem; margin-bottom: 0.5rem; display: block; }
+        .upload-text { font-size: 0.85rem; color: #475569; font-weight: 600; }
+        .upload-subtext { font-size: 0.75rem; color: var(--gray); margin-top: 0.25rem; }
+        #file-input { display: none; }
+
+        /* --- Dynamic Quick Links Portal Deck Component --- */
+        .portal-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            margin-top: 0.5rem;
         }
-        
-        .step-num { 
-            background: #e0e7ff; 
-            color: var(--primary); 
-            width: 36px; 
-            height: 36px; 
-            border-radius: 10px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-weight: 700; 
-            flex-shrink: 0; 
-            font-size: 1rem;
+        .portal-link-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.85rem 1rem;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: #334155;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
         }
-        
-        .step-text h3 { 
-            font-size: 1.1rem; 
-            margin-bottom: 0.4rem; 
-            font-weight: 700;
-            color: var(--dark);
+        .portal-link-btn:hover {
+            border-color: var(--primary);
+            background: #f5f3ff;
+            color: var(--primary);
+            transform: translateY(-1px);
         }
-        
-        .step-text p { 
-            font-size: 0.95rem; 
-            margin: 0; 
-            color: var(--gray); 
-            line-height: 1.6; 
+        .portal-link-btn .icon { font-size: 1.15rem; }
+
+        /* Dynamic Feedback Output Log Box */
+        .status-log-window {
+            background: #0f172a; color: #38bdf8; font-family: monospace; padding: 1rem; border-radius: 12px; font-size: 0.85rem; min-height: 80px; max-height: 120px; overflow-y: auto; margin-top: 1rem; box-shadow: inset 0 2px 8px rgba(0,0,0,0.2);
         }
 
-        .chat-panel { 
-            flex: 1.4; 
-            min-width: 380px;
-            display: flex; 
-            flex-direction: column; 
-            overflow: hidden; 
-            min-height: 650px; 
-        }
-        
-        .chat-header { 
-            background: white; 
-            color: var(--dark); 
-            padding: 1.25rem 1.5rem; 
-            font-weight: 700; 
-            border-bottom: 1px solid var(--border);
-            font-size: 1rem;
-        }
-        
-        .chat-iframe { 
-            width: 100%; 
-            height: 100%; 
-            border: none; 
-            flex: 1; 
-            background: #fafafa;
-        }
+        .chat-header { background: white; color: var(--dark); padding: 1.25rem 1.5rem; font-weight: 700; border-bottom: 1px solid var(--border); font-size: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        .status-dot { width: 8px; height: 8px; background: var(--primary); border-radius: 50%; display: inline-block; animation: pulse 2s infinite; }
+        .chat-iframe { width: 100%; height: 100%; border: none; flex: 1; background: #f8fafc; }
 
-        /* --- Responsive Media Breakpoints --- */
-        @media (max-width: 968px) {
+        @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
+
+        @media (max-width: 1024px) {
             #auth-screen { flex-direction: column; }
             .auth-hero { display: none; } 
-            .auth-container { width: 100vw; height: 100vh; }
             .mode-grid { flex-direction: column; padding: 0 1rem; }
-            
-            header { padding: 1rem 1.5rem; }
-            .container { padding: 0 1rem; margin: 1rem auto; gap: 0; }
-            .mobile-nav { display: flex; }
-            
-            .info-panel { 
-                display: block; 
-                width: 100%; 
-                border-bottom-left-radius: 0;
-                border-bottom-right-radius: 0;
-                padding: 1.5rem;
-            }
-            .chat-panel { 
-                display: none; 
-                width: 100%; 
-                min-height: calc(100vh - 200px);
-                border-top-left-radius: 0;
-                border-top-right-radius: 0;
-            }
+            .container { flex-direction: column; }
+            .info-panel { min-width: 100%; }
+            .chat-panel { min-width: 100%; height: 600px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Authentication Portal (Login / Sign Up Split System) -->
+    <!-- Authentication Portal -->
     <div id="auth-screen">
         <div class="auth-hero">
-            <!-- New Group Identity Logo -->
             <div class="brand-logo-area">
-                <div class="logo-icon">⏱️</div>
-                <span>NextDeadline</span>
+                <img src="logo.png" alt="NextDateline Logo">
             </div>
 
-            <!-- Enhanced Marketing Copy with UI Image Preview Mock -->
             <div class="hero-content">
                 <h2>Take control of your calendar. Eliminate the crunch.</h2>
                 <p>NextDeadline instantly transforms modular milestones into lightweight, day-by-day action plans. Missed a block? The algorithm balances the scale dynamically.</p>
                 
-                <!-- Pure CSS UI Interface Graphic Element -->
-                <div class="app-preview-mock">
-                    <div class="mock-header">
-                        <div class="dot red"></div>
-                        <div class="dot yellow"></div>
-                        <div class="dot green"></div>
-                    </div>
-                    <div class="mock-row accent"></div>
-                    <div class="mock-row"></div>
-                    <div class="mock-row short"></div>
+                <!-- FIXED: Replaced the layout line sketches container box with webimage.jpg configuration -->
+                <div class="auth-image-frame">
+                    <img src="webimage.jpg" alt="Application Overview Dashboard Graphic Asset">
                 </div>
             </div>
         </div>
 
         <div class="auth-container">
             <div class="auth-card">
-                <h1>NextDeadline</h1>
-                <p id="auth-desc">Sign in with your Student ID to access your planner</p>
-                
-                <div class="input-group">
-                    <label id="input-label" for="student-id">Student ID / Number</label>
-                    <input type="text" id="student-id" placeholder="e.g., 25047410" autocomplete="off">
-                    <div class="error-msg" id="auth-error">Invalid Student ID. Please try again.</div>
-                    <div class="success-msg" id="auth-success">Account registered! You can now sign in.</div>
+                <!-- Main Login / Sign Up Input View Layout -->
+                <div id="auth-form-fields">
+                    <h1 id="auth-title">NextDeadline</h1>
+                    <p id="auth-desc">Sign in with your Student ID to access your planner</p>
+                    
+                    <div class="input-group">
+                        <label id="input-label" for="student-id">Student ID / Number</label>
+                        <input type="text" id="student-id" placeholder="e.g., 25047410" autocomplete="off">
+                        <div class="error-msg" id="auth-error">Invalid Student ID. Please try again.</div>
+                    </div>
+                    
+                    <button class="auth-btn" id="submit-auth-btn" onclick="handleSubmit()">Access Dashboard</button>
+                    
+                    <div class="toggle-auth" id="toggle-container">
+                        New student? <span onclick="switchToSignUp()">Create an Account</span>
+                    </div>
                 </div>
-                
-                <button class="auth-btn" id="submit-auth-btn" onclick="handleSubmit()">Access Dashboard</button>
-                
-                <div class="toggle-auth" id="toggle-container">
-                    New student? <span onclick="switchToSignUp()">Create an Account</span>
+
+                <!-- Clean Card Overlay Success Context View -->
+                <div id="auth-success-state" style="display: none; text-align: center; padding: 1rem 0;">
+                    <div style="font-size: 3.5rem; margin-bottom: 1rem;">✅</div>
+                    <h2 style="font-weight: 800; margin-bottom: 0.5rem; color: var(--dark);">Registration Complete!</h2>
+                    <p style="color: var(--gray); font-size: 0.95rem; margin-bottom: 2rem;">
+                        Your Student ID has been initialized in the system database.
+                    </p>
+                    <button class="auth-btn" onclick="triggerSuccessRedirect()">Proceed to Sign In</button>
                 </div>
             </div>
         </div>
@@ -587,9 +445,13 @@
 
     <!-- Intermediate Mode Selection Screen -->
     <div id="mode-screen">
+        <button onclick="returnToLanding()" style="margin-bottom: 2rem; padding: 0.6rem 1.2rem; background: #fff; color: var(--gray); border: 1px solid var(--border); border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 0.85rem; transition: all 0.2s; display: flex; align-items: center; gap: 0.5rem;" onmouseover="this.style.background='#f1f5f9'; this.style.color='var(--dark)'" onmouseout="this.style.background='#fff'; this.style.color='var(--gray)'">
+            ← Back to Login
+        </button>
+
         <div class="mode-title">
             <h2>Welcome to NextDeadline</h2>
-            <p style="color: var(--gray);">Please choose a workspace track to customize your session context</p>
+            <p style="color: var(--gray); margin-bottom: 1.5rem;">Please choose a workspace track to customize your session context</p>
         </div>
         <div class="mode-grid">
             <div class="mode-card" onclick="launchDashboard('academic')">
@@ -608,39 +470,64 @@
     <!-- Main Dashboard App Interface Area -->
     <div id="dashboard-screen">
         <header>
-            <h1>Next<span>Deadline</span> ⏱️</h1>
+            <img src="logo.png" alt="NextDateline Logo" class="header-logo" onclick="returnToModeSelection()">
             <div class="header-actions">
-                <button class="switch-mode-btn" onclick="returnToModeSelection()">🔄 Switch Track</button>
+                <button class="switch-mode-btn" onclick="returnToModeSelection()">🏡 Back to Home</button>
                 <button class="logout-btn" onclick="handleLogout()">Log Out</button>
             </div>
         </header>
-        
-        <div class="mobile-nav">
-            <button id="tab-info" class="active" onclick="switchMobileTab('info')">Objectives</button>
-            <button id="tab-chat" onclick="switchMobileTab('chat')">Next Deadline Chat</button>
-        </div>
 
         <div class="container">
+            <!-- Left Side Panel: Reference Hub Framework -->
             <div id="panel-info" class="info-panel">
-                <div class="user-welcome" id="welcome-banner">Welcome back, Student!</div>
                 
-                <div id="dynamic-content-area">
-                    <h2>3. Project Objectives</h2>
-                    <p style="margin-top: 0.5rem; font-weight: 700; color: var(--dark); font-size: 1rem;">Core Goals:</p>
-                    <div class="workflow-steps">
-                        <div class="step">
-                            <div class="step-num">1</div>
-                            <div class="step-text">
-                                <h3>Automatic Task Breakdown</h3>
-                                <p>Automatically break down complex projects into small, manageable daily tasks so you know exactly where to start.</p>
-                            </div>
-                        </div>
+                <!-- Simplified Session Tracker Heading Banner -->
+                <div class="workspace-banner-card">
+                    <div>
+                        <h4 style="color: var(--gray); font-size: 0.75rem;">Active Environment</h4>
+                        <div style="font-size: 1.25rem; font-weight: 800; color: var(--dark); margin-top: 0.15rem;" id="banner-track-name">Loading Track...</div>
+                    </div>
+                    <div class="status-badge" id="banner-track-badge" style="background: #e0e7ff; color: var(--primary);">Secure Session</div>
+                </div>
+                
+                <!-- Dynamic Quick Links Deck Widget -->
+                <div class="widget-box" id="portal-box">
+                    <h3>🔗 Student Portal Shortcuts</h3>
+                    <p style="font-size:0.85rem; color:var(--gray); margin-bottom:0.5rem;">Access essential student portals immediately without leaving your tracking environment.</p>
+                    <div class="portal-grid" id="dynamic-portals">
+                        <!-- Injected dynamically via JavaScript -->
                     </div>
                 </div>
+                
+                <!-- Dynamic File Upload Dropzone Box (Only shows on Academic Track) -->
+                <div class="widget-box" id="upload-box">
+                    <h3 id="upload-box-title">📅 Upload Class Schedule</h3>
+                    <p style="font-size:0.85rem; color:var(--gray); margin-bottom:0.75rem;">Upload your schedule file to feed structural context parameters directly into the assistant runtime.</p>
+                    
+                    <div class="upload-dropzone" id="dropzone" onclick="document.getElementById('file-input').click()">
+                        <span class="upload-icon">📁</span>
+                        <span class="upload-text" id="dropzone-text">Drag & drop timetable file or click to browse</span>
+                        <span class="upload-subtext">Accepts Excel (.xlsx), PDF, or Word documents</span>
+                        <input type="file" id="file-input" accept=".xlsx, .xls, .pdf, .docx, .doc" onchange="handleFileSelect(event)">
+                    </div>
+                </div>
+
+                <!-- Simulation Processing Activity Window -->
+                <div class="widget-box" style="margin-top: -0.5rem;">
+                    <h3 style="font-size: 0.95rem; color: var(--gray);">System Processing Feed</h3>
+                    <div class="status-log-window" id="terminal-feed">
+                        [SYSTEM INIT] Waiting for user track selection...
+                    </div>
+                </div>
+
             </div>
 
+            <!-- Right Side Panel: Live Assistant Network Endpoint -->
             <div id="panel-chat" class="chat-panel">
-                <div class="chat-header" id="chat-title">NextDeadline Assistant</div>
+                <div class="chat-header">
+                    <div class="status-dot"></div>
+                    <span id="chat-title">NextDeadline Assistant</span>
+                </div>
                 <iframe class="chat-iframe" id="chat-frame" src=""></iframe>
             </div>
         </div>
@@ -650,10 +537,35 @@
         let registeredIDs = ["25047410", "25000712", "25011984"];
         let isSignUpMode = false;
         let activeStudentID = "";
+        let selectedTrack = "";
+
+        // Modular HTML injector for portal paths
+        function renderStudentPortals() {
+            return `
+                <a href="https://politemall.polite.edu.sg" target="_blank" class="portal-link-btn">
+                    <span class="icon">🏫</span> Politemall LMS
+                </a>
+                <a href="https://mysa.rp.edu.sg/" target="_blank" class="portal-link-btn">
+                    <span class="icon">📝</span> SA3.0 Portal
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.engage2serve.snapp2" target="_blank" class="portal-link-btn">
+                    <span class="icon">📱</span> SNAPP App Play
+                </a>
+                <a href="campus-map.pdf" download="RP_Campus_Map.pdf" class="portal-link-btn">
+                    <span class="icon">🗺️</span> Campus Map PDF
+                </a>
+                <a href="academic-calendar.pdf" download="RP_Academic_Calendar.pdf" class="portal-link-btn" style="grid-column: span 2;">
+                    <span class="icon">📅</span> Academic Calendar PDF
+                </a>
+            `;
+        }
 
         function switchToSignUp() {
             isSignUpMode = true;
-            document.getElementById('auth-title').innerText = "Register Profile";
+            document.getElementById('auth-success-state').style.display = 'none';
+            document.getElementById('auth-form-fields').style.display = 'block';
+
+            document.querySelector('.auth-card h1').innerText = "Register Profile";
             document.getElementById('auth-desc').innerText = "Enter your Student ID to initialize your database";
             document.getElementById('submit-auth-btn').innerText = "Register ID";
             document.getElementById('toggle-container').innerHTML = 'Already registered? <span onclick="switchToLogin()">Sign In</span>';
@@ -662,7 +574,10 @@
 
         function switchToLogin() {
             isSignUpMode = false;
-            document.getElementById('auth-title').innerText = "NextDeadline";
+            document.getElementById('auth-success-state').style.display = 'none';
+            document.getElementById('auth-form-fields').style.display = 'block';
+
+            document.querySelector('.auth-card h1').innerText = "NextDeadline";
             document.getElementById('auth-desc').innerText = "Sign in with your Student ID to access your planner";
             document.getElementById('submit-auth-btn').innerText = "Access Dashboard";
             document.getElementById('toggle-container').innerHTML = 'New student? <span onclick="switchToSignUp()">Create an Account</span>';
@@ -671,16 +586,13 @@
 
         function clearMessages() {
             document.getElementById('auth-error').style.display = 'none';
-            document.getElementById('auth-success').style.display = 'none';
         }
 
         function handleSubmit() {
             const idInput = document.getElementById('student-id').value.trim();
             const errorElement = document.getElementById('auth-error');
-            const successElement = document.getElementById('auth-success');
 
             clearMessages();
-
             if (!idInput) {
                 errorElement.innerText = "Student ID cannot be blank.";
                 errorElement.style.display = 'block';
@@ -693,9 +605,10 @@
                     errorElement.style.display = 'block';
                 } else {
                     registeredIDs.push(idInput);
-                    successElement.style.display = 'block';
+                    
+                    document.getElementById('auth-form-fields').style.display = 'none';
+                    document.getElementById('auth-success-state').style.display = 'block';
                     document.getElementById('student-id').value = "";
-                    setTimeout(() => { switchToLogin(); }, 1200);
                 }
             } else {
                 if (registeredIDs.includes(idInput)) {
@@ -709,94 +622,114 @@
             }
         }
 
+        function triggerSuccessRedirect() {
+            switchToLogin();
+        }
+
+        function returnToLanding() {
+            activeStudentID = "";
+            document.getElementById('student-id').value = "";
+            document.getElementById('mode-screen').style.display = 'none';
+            document.getElementById('auth-screen').style.display = 'flex';
+            switchToLogin();
+        }
+
         function launchDashboard(trackType) {
+            selectedTrack = trackType;
             document.getElementById('mode-screen').style.display = 'none';
             document.getElementById('dashboard-screen').style.display = 'flex';
             
-            const contentArea = document.getElementById('dynamic-content-area');
-            const welcomeBanner = document.getElementById('welcome-banner');
+            const logFeed = document.getElementById('terminal-feed');
             const chatHeaderTitle = document.getElementById('chat-title');
+            const uploadBox = document.getElementById('upload-box');
+            const portalBox = document.getElementById('portal-box');
+            const trackNameDisplay = document.getElementById('banner-track-name');
+            const trackBadgeDisplay = document.getElementById('banner-track-badge');
             
+            logFeed.innerHTML = `[AUTH SUCCESS] Token Session verified for User #${activeStudentID}<br>[TRACK SELECTED] Context initialized to: ${trackType.toUpperCase()}`;
+            resetDropzone();
+
             if (trackType === 'academic') {
-                welcomeBanner.innerText = `🔒 Planner Active: ID #${activeStudentID}`;
+                trackNameDisplay.innerText = "Academic Planner";
+                trackBadgeDisplay.innerText = "Planner Active";
+                trackBadgeDisplay.style.background = "#e0e7ff";
+                trackBadgeDisplay.style.color = "var(--primary)";
+                
                 chatHeaderTitle.innerText = `NextDeadline Planner [ID: ${activeStudentID}]`;
                 
-                contentArea.innerHTML = `
-                    <h2>3. Project Objectives</h2>
-                    <p style="margin-top: 0.5rem; font-weight: 700; color: var(--dark); font-size: 1rem;">Core Goals:</p>
-                    
-                    <div class="workflow-steps">
-                        <div class="step">
-                            <div class="step-num">1</div>
-                            <div class="step-text">
-                                <h3>Automatic Task Breakdown</h3>
-                                <p>Automatically break down complex projects into small, manageable daily tasks so you know exactly where to start.</p>
-                            </div>
-                        </div>
-                        <div class="step">
-                            <div class="step-num">2</div>
-                            <div class="step-text">
-                                <h3>Instant Calendar Adjustment</h3>
-                                <p>Instantly adjust and update your calendar when you miss a study session, preventing tasks from piling up and causing panic.</p>
-                            </div>
-                        </div>
-                        <div class="step">
-                            <div class="step-num">3</div>
-                            <div class="step-text">
-                                <h3>Timely Alerts & Motivation</h3>
-                                <p>Keep you on track with timely alerts and encouraging messages that push you to complete your daily goals.</p>
-                            </div>
-                        </div>
-                    </div>
+                uploadBox.style.display = "block"; 
+                portalBox.style.display = "none"; 
+                
+                const n8nBaseUrl = "https://n8ngc.codeblazar.org/webhook/8016455c-b48b-495f-afcb-ea391c772351/chat";
+                const metadataPayload = encodeURIComponent(JSON.stringify({ 
+                    userId: activeStudentID,
+                    mode: trackType 
+                }));
+                document.getElementById('chat-frame').src = `${n8nBaseUrl}?metadata=${metadataPayload}`;
 
-                    <p style="font-weight: 700; color: var(--dark); margin-top: 2rem; font-size: 1rem;">Expected Value & Impact:</p>
-                    <p style="font-size: 0.95rem; color: var(--gray); margin-top: 0.5rem; line-height: 1.6;">NextDeadline gives polytechnic students a stress-free way to manage their time, resulting in a more organized, less anxious, and more productive student body that can definitely meet its deadlines.</p>
-                `;
             } else if (trackType === 'freshman') {
-                welcomeBanner.innerText = `🎒 Freshman Track: ID #${activeStudentID}`;
+                trackNameDisplay.innerText = "Freshman Onboarding";
+                trackBadgeDisplay.innerText = "Orientation Mode";
+                trackBadgeDisplay.style.background = "#fef3c7";
+                trackBadgeDisplay.style.color = "#d97706";
+
                 chatHeaderTitle.innerText = `Orientation Assistant [ID: ${activeStudentID}]`;
                 
-                contentArea.innerHTML = `
-                    <h2>Orientation Roadmap</h2>
-                    <p style="margin-top: 0.5rem; font-weight: 700; color: var(--dark); font-size: 1rem;">Essential Actions:</p>
-                    
-                    <div class="workflow-steps">
-                        <div class="step">
-                            <div class="step-num">✓</div>
-                            <div class="step-text">
-                                <h3>Orientation Checklists</h3>
-                                <p>Verify your intake documents, locate your student card pick-up counters, and check uniform rules if required.</p>
-                            </div>
-                        </div>
-                        <div class="step">
-                            <div class="step-num">📍</div>
-                            <div class="step-text">
-                                <h3>Campus Geolocation Guide</h3>
-                                <p>Find out where major facilitation rooms, engineering/IT labs, complex food courts, and admin centers are positioned.</p>
-                            </div>
-                        </div>
-                        <div class="step">
-                            <div class="step-num">💡</div>
-                            <div class="step-text">
-                                <h3>PBL Crash Course Tips</h3>
-                                <p>Get tips on navigating daily problem statements, gathering presentation materials, and succeeding under continuous grading systems.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <p style="font-weight: 700; color: var(--dark); margin-top: 2rem; font-size: 1rem;">Onboarding Value:</p>
-                    <p style="font-size: 0.95rem; color: var(--gray); margin-top: 0.5rem; line-height: 1.6;">This interface eases your transition into polytechnic life, transforming complex campus guidelines into conversational interactions so you know what to bring and do.</p>
-                `;
+                uploadBox.style.display = "none"; 
+                portalBox.style.display = "block"; 
+                document.getElementById('dynamic-portals').innerHTML = renderStudentPortals();
+                
+                document.getElementById('chat-frame').src = "https://cdn.botpress.cloud/webchat/v3.6/shareable.html?configUrl=https://files.bpcontent.cloud/2026/07/02/04/20260702040825-S3JZPRAH.json";
             }
+        }
 
-            const n8nBaseUrl = "https://n8ngc.codeblazar.org/webhook/8016455c-b48b-495f-afcb-ea391c772351/chat";
-            const metadataPayload = encodeURIComponent(JSON.stringify({ 
-                userId: activeStudentID,
-                mode: trackType 
-            }));
-            
-            document.getElementById('chat-frame').src = `${n8nBaseUrl}?metadata=${metadataPayload}`;
-            switchMobileTab('info');
+        /* --- Drag and Drop Logic Handling --- */
+        const dropzone = document.getElementById('dropzone');
+        
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropzone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                dropzone.classList.add('dragover');
+            }, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropzone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                dropzone.classList.remove('dragover');
+            }, false);
+        });
+
+        dropzone.addEventListener('drop', (e) => {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            if(files.length) {
+                document.getElementById('file-input').files = files;
+                processUploadedFile(files[0]);
+            }
+        });
+
+        function handleFileSelect(e) {
+            const files = e.target.files;
+            if(files.length) processUploadedFile(files[0]);
+        }
+
+        function processUploadedFile(file) {
+            const logFeed = document.getElementById('terminal-feed');
+            document.getElementById('dropzone-text').innerText = `📄 Ready: ${file.name}`;
+            dropzone.style.borderColor = "var(--primary)";
+            dropzone.style.background = "#f5f3ff";
+
+            logFeed.innerHTML += `<br>[FILE INGESTED] Staged structural file asset: "${file.name}" (${Math.round(file.size/1024)} KB)`;
+            logFeed.innerHTML += `<br>[WEBHOOK PREP] Executing binary serialization buffer pipeline...`;
+            logFeed.scrollTop = logFeed.scrollHeight;
+        }
+
+        function resetDropzone() {
+            document.getElementById('dropzone-text').innerText = "Drag & drop timetable file or click to browse";
+            dropzone.style.borderColor = "#cbd5e1";
+            dropzone.style.background = "#f8fafc";
+            document.getElementById('file-input').value = "";
         }
 
         function returnToModeSelection() {
@@ -805,29 +738,9 @@
             document.getElementById('mode-screen').style.display = 'flex';
         }
 
-        function switchMobileTab(targetTab) {
-            if (window.innerWidth > 968) return; 
-            
-            const infoPanel = document.getElementById('panel-info');
-            const chatPanel = document.getElementById('panel-chat');
-            const tabInfoBtn = document.getElementById('tab-info');
-            const tabChatBtn = document.getElementById('tab-chat');
-            
-            if (targetTab === 'info') {
-                infoPanel.style.display = 'block';
-                chatPanel.style.display = 'none';
-                tabInfoBtn.classList.add('active');
-                tabChatBtn.classList.remove('active');
-            } else {
-                infoPanel.style.display = 'none';
-                chatPanel.style.display = 'flex';
-                tabInfoBtn.classList.remove('active');
-                tabChatBtn.classList.add('active');
-            }
-        }
-
         function handleLogout() {
             activeStudentID = "";
+            selectedTrack = "";
             document.getElementById('chat-frame').src = "";
             document.getElementById('student-id').value = "";
             document.getElementById('dashboard-screen').style.display = 'none';
