@@ -239,7 +239,7 @@
 </head>
 <body>
 
-    <!-- Intermediate Mode Selection Screen (Now the Initial Entry Point) -->
+    <!-- Intermediate Mode Selection Screen (Initial Entry Point) -->
     <div id="mode-screen">
         <div class="mode-title">
             <h2>Welcome to NextDeadline</h2>
@@ -332,6 +332,7 @@
     <script>
         let selectedTrack = "";
 
+        // FIXED: Added target="_blank" and modified Academic Calendar button name parameter
         function renderStudentPortals() {
             return `
                 <a href="https://politemall.polite.edu.sg" target="_blank" class="portal-link-btn">
@@ -343,11 +344,11 @@
                 <a href="https://play.google.com/store/apps/details?id=com.engage2serve.snapp2" target="_blank" class="portal-link-btn">
                     <span class="icon">📱</span> SNAPP App Play
                 </a>
-                <a href="campus-map.pdf" download="RP_Campus_Map.pdf" class="portal-link-btn">
+                <a href="campus-map.pdf" target="_blank" class="portal-link-btn">
                     <span class="icon">🗺️</span> Campus Map PDF
                 </a>
-                <a href="academic-calendar.pdf" download="RP_Academic_Calendar.pdf" class="portal-link-btn" style="grid-column: span 2;">
-                    <span class="icon">📅</span> Academic Calendar PDF
+                <a href="academic-calendar.pdf" target="_blank" class="portal-link-btn" style="grid-column: span 2;">
+                    <span class="icon">📅</span> Academic Calendar 2026 PDF
                 </a>
             `;
         }
@@ -377,7 +378,6 @@
                 uploadBox.style.display = "block"; 
                 portalBox.style.display = "none"; 
                 
-                // Note: Since ID collection is handled inside chat stream, metadata payload passes generic initial mode state mapping
                 const n8nBaseUrl = "https://n8ngc.codeblazar.org/webhook/8016455c-b48b-495f-afcb-ea391c772351/chat";
                 const metadataPayload = encodeURIComponent(JSON.stringify({ 
                     mode: trackType 
