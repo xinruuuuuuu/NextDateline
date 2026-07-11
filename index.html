@@ -81,6 +81,7 @@
             text-transform: uppercase;
             letter-spacing: 0.08em;
             border: 1px solid rgba(99, 102, 241, 0.2);
+            white-space: nowrap;
         }
 
         /* --- LANDING SELECTION LAYOUT --- */
@@ -316,8 +317,65 @@
 
         @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
 
+        /* --- BACK TO TOP COMPONENT BUTTON --- */
+        .back-to-top-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.35);
+            z-index: 99;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            transform: translateY(10px);
+        }
+        .back-to-top-btn.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+        .back-to-top-btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(99, 102, 241, 0.45);
+        }
+
         /* --- MOBILE RESPONSIVE LAYOUT MATRIX RULES --- */
         @media (max-width: 968px) {
+            /* FIXED: Stacks layout elements into clean rows instead of crushing text */
+            .landing-header { 
+                flex-direction: column; 
+                gap: 0.75rem; 
+                padding: 1.25rem 1rem;
+                text-align: center;
+            }
+            .dashboard-header {
+                flex-direction: column;
+                gap: 0.75rem;
+                padding: 1rem;
+                text-align: center;
+            }
+            .dashboard-header div {
+                margin: 0 !important;
+                padding: 0 !important;
+                font-size: 1.3rem !important;
+            }
+            .switch-mode-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
             #mode-screen { 
                 flex-direction: column-reverse; 
                 padding: 2rem 1rem; 
@@ -326,8 +384,9 @@
             }
             .portal-left, .portal-right { width: 100%; flex: none; }
             .mode-title h2 { font-size: 2.25rem; }
-            .mode-title p { font-size: 1rem; }
+            .mode-title p { font-size: 1rem; margin-bottom: 2rem; }
             
+            .mode-grid { gap: 1rem; }
             .mode-card { 
                 padding: 1.25rem; 
                 gap: 1rem; 
@@ -338,7 +397,6 @@
             .mode-text-box p { font-size: 0.85rem; text-align: left; }
 
             .main-brand-logo { height: 46px; }
-            .landing-header { padding: 1rem; }
             
             .flip-stage { max-width: 280px; margin: 0 auto; }
             .auth-image-frame, .auth-logo-backframe { padding: 1.25rem; border-radius: 20px; }
@@ -389,6 +447,9 @@
 
     <div class="bg-glow-1" id="orb-1"></div>
     <div class="bg-glow-2" id="orb-2"></div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top-btn" id="scrollTopBtn" onclick="scrollToTop()">↑</button>
 
     <!-- Navigation Header -->
     <header class="landing-header" id="landing-nav">
@@ -556,6 +617,23 @@
     <script>
         let selectedTrack = "";
 
+        // --- BACK TO TOP AUTOMATION LOGIC ---
+        const scrollTopBtn = document.getElementById("scrollTopBtn");
+        window.onscroll = function() {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                scrollTopBtn.classList.add("visible");
+            } else {
+                scrollTopBtn.classList.remove("visible");
+            }
+        };
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
         // --- BACKGROUND PARALLAX EFFECTS ---
         document.addEventListener('mousemove', (e) => {
             const orb1 = document.getElementById('orb-1');
@@ -639,7 +717,6 @@
                 ? "https://apps.apple.com/sg/app/snapp/id1152917731" 
                 : "https://play.google.com/store/apps/details?id=com.engage2serve.snapp2";
 
-            // FIXED: Removed JavaScript download wrappers and download parameters to let files safely load inline via target="_blank"
             return `
                 <a href="https://politemall.polite.edu.sg" target="_blank" class="portal-link-btn"><span class="icon">🏫</span> Politemall LMS</a>
                 <a href="https://mysa.rp.edu.sg/" target="_blank" class="portal-link-btn"><span class="icon">📝</span> SA3.0 Portal</a>
