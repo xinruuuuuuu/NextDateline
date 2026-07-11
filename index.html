@@ -313,11 +313,23 @@
 
         .chat-header { background: white; color: var(--dark); padding: 1.5rem; font-weight: 800; border-bottom: 1px solid var(--border); font-size: 1.05rem; display: flex; align-items: center; gap: 0.6rem; }
         .status-dot { width: 10px; height: 10px; background: var(--primary); border-radius: 50%; display: inline-block; animation: pulse 2s infinite; }
+        
+        /* ADDED: Dynamic shadow pulse glow effect around the chat panel border to prompt interaction */
+        .chat-panel.active-glow {
+            animation: inputPromptGlow 2.5s infinite ease-in-out;
+            border-color: var(--primary);
+        }
+        @keyframes inputPromptGlow {
+            0% { box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.04); }
+            50% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.25); }
+            100% { box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.04); }
+        }
+
         .chat-iframe { width: 100%; height: 100%; border: none; flex: 1; background: #f8fafc; }
 
         @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
 
-        /* --- BACK TO TOP COMPONENT BUTTON --- */
+        /* --- FIXED FIXED BACK TO TOP BUTTON COMPONENT --- */
         .back-to-top-btn {
             position: fixed;
             bottom: 2rem;
@@ -326,19 +338,19 @@
             color: white;
             border: none;
             border-radius: 50%;
-            width: 48px;
-            height: 48px;
-            font-size: 1.25rem;
+            width: 52px;
+            height: 52px;
+            font-size: 1.4rem;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             box-shadow: 0 8px 24px rgba(99, 102, 241, 0.35);
-            z-index: 99;
+            z-index: 99999;
             opacity: 0;
             pointer-events: none;
-            transition: all 0.3s ease;
-            transform: translateY(10px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(15px);
         }
         .back-to-top-btn.visible {
             opacity: 1;
@@ -347,13 +359,12 @@
         }
         .back-to-top-btn:hover {
             background: var(--primary-hover);
-            transform: translateY(-3px);
+            transform: translateY(-4px);
             box-shadow: 0 12px 28px rgba(99, 102, 241, 0.45);
         }
 
         /* --- MOBILE RESPONSIVE LAYOUT MATRIX RULES --- */
         @media (max-width: 968px) {
-            /* FIXED: Stacks layout elements into clean rows instead of crushing text */
             .landing-header { 
                 flex-direction: column; 
                 gap: 0.75rem; 
@@ -416,10 +427,11 @@
                 order: 2; 
             }
             
+            /* FIXED DYNAMIC HEIGHT EXTENSION: Expands chat viewing frame context explicitly */
             .chat-panel { 
                 min-width: 100%;
                 width: 100%;
-                height: 75vh; 
+                height: 85vh; /* Expanded view framework matrix safely */
                 order: 1; 
                 border-radius: 16px;
                 display: flex;
@@ -448,7 +460,7 @@
     <div class="bg-glow-1" id="orb-1"></div>
     <div class="bg-glow-2" id="orb-2"></div>
 
-    <!-- Back to Top Button -->
+    <!-- Back to Top Functional Element Node -->
     <button class="back-to-top-btn" id="scrollTopBtn" onclick="scrollToTop()">↑</button>
 
     <!-- Navigation Header -->
@@ -604,7 +616,7 @@
             </div>
 
             <!-- Main Full-Width Chat Panel -->
-            <div id="panel-chat" class="chat-panel">
+            <div id="panel-chat" class="chat-panel active-glow">
                 <div class="chat-header">
                     <div class="status-dot"></div>
                     <span id="chat-title">NextDeadline Assistant</span>
@@ -617,15 +629,15 @@
     <script>
         let selectedTrack = "";
 
-        // --- BACK TO TOP AUTOMATION LOGIC ---
-        const scrollTopBtn = document.getElementById("scrollTopBtn");
-        window.onscroll = function() {
-            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                scrollTopBtn.classList.add("visible");
+        // --- BACK TO TOP GLOBAL SCROLL MONITOR ---
+        window.addEventListener("scroll", () => {
+            const btn = document.getElementById("scrollTopBtn");
+            if (window.scrollY > 250 || document.documentElement.scrollTop > 250) {
+                btn.classList.add("visible");
             } else {
-                scrollTopBtn.classList.remove("visible");
+                btn.classList.remove("visible");
             }
-        };
+        }, { passive: true });
 
         function scrollToTop() {
             window.scrollTo({
